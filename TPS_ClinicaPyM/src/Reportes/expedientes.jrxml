@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb9cc6bc-9ac1-441e-95f3-fee3b8412f75">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="157" splitType="Stretch">
+			<image>
+				<reportElement x="20" y="18" width="108" height="116" uuid="370e92d8-1a15-4f97-a9bc-20703fc776ff"/>
+				<imageExpression><![CDATA["C:\\Users\\linke\\Desktop\\TPS_Clinica2020\\Dashboard_1\\src\\img\\logo1.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="138" y="31" width="403" height="20" uuid="448f5aca-3167-4209-98c8-49c761c8db70"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLINICA DE LA MUJER Y SU PAREJA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="51" width="403" height="20" uuid="40b032ad-740b-435a-98d4-94528a39f2c3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dra. Soraya Esmeralda Cornejo. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="71" width="403" height="20" uuid="4bbd8967-a9aa-4043-a19e-6188cd1e3f10"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ginecólogo obstetra]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="69" y="15" width="403" height="20" uuid="60152eda-1ae1-4bec-9535-4823f86f79bb"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXPEDIENTE MEDICO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="194" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="45" width="163" height="20" uuid="605738a3-910b-4d06-9819-3281608271b2"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="65" width="163" height="20" uuid="5e227fe1-ada5-40cc-a1e6-2ff1b3c19681"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="25" width="163" height="20" uuid="b7ba7a4b-fdfc-43c7-a09d-e6156b0ae762"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="5" width="163" height="20" uuid="90725f7c-a034-432b-abf6-1f561323cda4"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="5" width="361" height="20" uuid="d87a5b16-de37-4aa5-85b5-0c614ff3a988"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Juana Perez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="85" width="161" height="20" uuid="8cabe556-9349-42ac-9f89-b176d2c61b6c"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="105" width="161" height="20" uuid="ea6707f1-b298-4c3b-ad76-04416fc7db7f"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Encargado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="25" width="361" height="20" uuid="96b3824e-9b1f-4394-919b-4f3345d8ba8e"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Las Flores, San Vicente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="45" width="361" height="20" uuid="31556c6b-dde5-43cd-92f3-027e177b5c5d"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[7563-5635]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="65" width="361" height="20" uuid="a666b68b-4f93-4407-ae6d-4ea5e67adb81"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Casada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="85" width="361" height="20" uuid="0d908290-0c77-4e6b-8c2d-fe22c1e7aa50"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Femenino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="105" width="361" height="20" uuid="9f723abe-ad8b-4e29-a4ea-087ae9e33bbd"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Francisca Perez]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="125" width="161" height="20" uuid="d65a1405-9bdd-4b23-b617-f933a03d1e1d"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="125" width="361" height="20" uuid="999f4f10-0e46-4a14-bec6-54112f4d3855"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[16/06/2005]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="145" width="161" height="20" uuid="d10576fc-2850-438d-8157-4779e396d080"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DUI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="145" width="361" height="20" uuid="7c52d27e-ce1b-413a-8cd2-ccba7239573c"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="165" width="161" height="20" uuid="dc6c53c0-6a20-4a51-96da-4e8ae254f6df"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consulta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="165" width="361" height="20" uuid="9b40636a-8621-4701-beae-934bf108907e"/>
+				<textElement>
+					<font fontName="Tahoma" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Consulta ginecologica]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
