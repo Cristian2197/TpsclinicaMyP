@@ -5,9 +5,11 @@
  */
 package paneles;
 
+import Acceso_Datos.Conexion;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -28,6 +30,7 @@ hilo ejecutar = new hilo();
         frmEntrada1.this.setBackground (new Color (0, 0, 0, 0)); 
         this.setResizable(false);
         this.setLocationRelativeTo(this);
+       
     }
 
     /**
