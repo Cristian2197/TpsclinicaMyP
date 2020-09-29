@@ -5,7 +5,7 @@
  */
 package Acceso_Datos;
 
-import paneles.Medicinas;
+
 import paneles.frmEntrada1;
 
 /**

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package principal;
+package paneles;
+
+import principal.TextPrompt;
 
 
 /**
@@ -44,7 +46,7 @@ public class FRMPuestos extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(20, 20));
 
         jPanel1.setBackground(new java.awt.Color(29, 27, 56));
@@ -65,7 +67,6 @@ public class FRMPuestos extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(231, 156, 194));
         btnGuardar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
         btnGuardar.setText("GUARDAR");
 
         lblPuestoDisponibles.setBackground(new java.awt.Color(231, 156, 194));
@@ -73,9 +74,7 @@ public class FRMPuestos extends javax.swing.JFrame {
         lblPuestoDisponibles.setForeground(new java.awt.Color(231, 156, 194));
         lblPuestoDisponibles.setText("Puestos existentes");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -90,12 +89,10 @@ public class FRMPuestos extends javax.swing.JFrame {
 
         btnModificar.setBackground(new java.awt.Color(231, 156, 194));
         btnModificar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnModificar.setForeground(new java.awt.Color(0, 0, 0));
         btnModificar.setText("MODIFICAR");
 
         btnEliminar.setBackground(new java.awt.Color(231, 156, 194));
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnEliminar.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminar.setText("ELIMINAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
