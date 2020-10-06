@@ -120,7 +120,7 @@ public class pnlBackup extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCopiaActionPerformed
 
     private void btnCopia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopia1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCopia1ActionPerformed
 
 
