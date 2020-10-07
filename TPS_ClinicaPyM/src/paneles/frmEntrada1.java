@@ -9,8 +9,7 @@ import Acceso_Datos.Conexion;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
+import java.sql.Connection;
 
 /**
  *
@@ -32,7 +31,7 @@ hilo ejecutar = new hilo();
         this.setLocationRelativeTo(this);
        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,10 +79,7 @@ hilo ejecutar = new hilo();
         ejecutar.start();
         }
     }//GEN-LAST:event_formWindowActivated
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -110,41 +106,47 @@ hilo ejecutar = new hilo();
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmEntrada1().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new frmEntrada1().setVisible(true);
         });
     }
- private class hilo extends Thread{
-    @Override
-    public void run(){
-        try {while(true){
-            auxiliar++;
-            barra.setValue(auxiliar);
-            repaint();
-            switch(auxiliar){
-                case 3:
-                    txtBienvenida.setText("Cargando programa...");
-                    break;
-                case 20:
-                    txtBienvenida.setText("Leyendo preferencias");
-                    break;
-                case 50:
-                    txtBienvenida.setText("Carga finalizada");
-                    break;
-                case 60:
-                    frmloguinn objeto = new frmloguinn();
-                    objeto.setVisible(true);
-                    objeto.setLocationRelativeTo(frmEntrada1.this);
-                    frmEntrada1.this.dispose();
-                    break;                    
+    
+    private class hilo extends Thread{
+      
+        @Override
+        public void run(){
+            //Conecto la base solo una vez y se lo envío a los demas form
+            Connection conexion;
+            Conexion con = new Conexion(0);
+            conexion = con.getConexion();
+            
+            try {while(true){
+                auxiliar++;
+                barra.setValue(auxiliar);
+                repaint();
+                switch(auxiliar){
+                    case 3:
+                        txtBienvenida.setText("Cargando programa...");
+                        break;
+                    case 20:
+                        txtBienvenida.setText("Leyendo preferencias");
+                        break;
+                    case 50:
+                        txtBienvenida.setText("Carga finalizada");
+                        break;
+                    case 60:
+                        frmloguinn objeto = new frmloguinn();
+                        objeto.SetConexion(conexion);
+                        objeto.setVisible(true);
+                        objeto.setLocationRelativeTo(frmEntrada1.this);
+                        frmEntrada1.this.dispose();
+                        break;                    
+                }
+                Thread.sleep(100);}
+            } catch (InterruptedException ex) {
+                Logger.getLogger(frmEntrada1.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Thread.sleep(100);}
-        } catch (InterruptedException ex) {
-            Logger.getLogger(frmEntrada1.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barra;

@@ -6,6 +6,7 @@
 package Acceso_Datos;
 
 
+import java.sql.Connection;
 import paneles.frmEntrada1;
 
 /**
@@ -18,11 +19,9 @@ public class CLINICA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         Conexion BD = new Conexion ();
-      BD.conexion();
-      frmEntrada1 llamada = new frmEntrada1 ();
-      llamada.setVisible(true);
-      
+        
+        frmEntrada1 llamada = new frmEntrada1 ();
+        llamada.setVisible(true);
     }
     
 }

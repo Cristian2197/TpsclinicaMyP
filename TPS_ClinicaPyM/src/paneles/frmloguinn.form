@@ -216,6 +216,12 @@
           </Constraints>
         </Component>
         <Component class="rojeru_san.RSMPassView" name="btnPass">
+          <Properties>
+            <Property name="placeholder" type="java.lang.String" value="Digite su contrase&#xf1;a..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnPassFocusGained"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="580" y="270" width="330" height="-1"/>
@@ -223,6 +229,12 @@
           </Constraints>
         </Component>
         <Component class="rojeru_san.RSMTextFull" name="btnUsuario">
+          <Properties>
+            <Property name="placeholder" type="java.lang.String" value="Escriba su nombre de usuario..."/>
+          </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="btnUsuarioFocusGained"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="570" y="160" width="340" height="-1"/>
@@ -255,6 +267,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="INICIAR SESI&#xd3;N"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonRiple2ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="580" y="420" width="330" height="-1"/>

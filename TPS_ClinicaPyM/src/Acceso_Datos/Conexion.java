@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Acceso_Datos;
 
 import java.sql.Connection;
@@ -15,59 +11,88 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import jdk.nashorn.internal.ir.TryNode;
+import java.io.File;
 
-/**
- *
- * @author linke
- */
 public class Conexion {
-/*private Connection connection =null; 
-private ResultSet rs = null; 
-private Statement s = null; 
-
-//INICIA LA CONEXION
-public void Con(){
-if (connection != null){
-    return;
+    private Process proceso;
+    private ProcessBuilder constructor;
     
-}
-String url = "jdbc:postgresql://localhost:5432/clinicaMyP";
-String pass = "12345";
-try {
-    Class.forName("org.postgresql.Driver");
-    connection = DriverManager.getConnection(url , "clinicaMyP" , pass);
-    if (connection != null){
-    System.out.print("Conectando a base de datos..");
-    
-}
-    
-            }catch(Exception e){
-            System.out.println ("Problemas de conexion");
-}
-
-
-}*/
-    
-     private static String us = "root";
-    private static String pas = "12345";
+    private String users[] = {"invitado", "doctor", "secretario", "sistemas"};
+    private String passwords[] = {"12345", "12345", "54321", "00000"};
+    //private static String us = "root";
+    //private static String pas = "00000";
     private static String bd = "clinicaMyP";
     private static String url = "jdbc:postgresql://localhost:5432/"+bd;
-    private static String usuario = "user";
-    
-Connection Conexion = null;
+    //private static String usuario = "sistemas";
+    private String usuario;
+    private String password;
+    Connection Conexion = null;
    
-    public Connection conexion() {
+    public Conexion( int tipo) {
       
         try {
-            Connection conectar = DriverManager.getConnection(url, usuario, pas);
-            JOptionPane.showMessageDialog(null, "CONEXION EXITOSA");
+            this.usuario = users[tipo];
+            this.password = passwords[tipo];
+            this.Conexion = DriverManager.getConnection(url, users[tipo], passwords[tipo]);
+            //JOptionPane.showMessageDialog(null, "CONEXION EXITOSA");
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion de la base de datos" + ex);
-       
-       
-        
+        }    
+    } 
+    
+    public Connection getConexion(){
+        return this.Conexion;
     }
-         return Conexion;
-  } 
+        
+    public boolean Backup(String path){
+        boolean hecho=false;
+        try{
+            File pgdump= new File("C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe");
+            if(pgdump.exists()){
+                if(!path.equalsIgnoreCase("")) {
+                    constructor = new ProcessBuilder(
+                            "C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe", "--verbose", "--format", ".sql", "-f", path);
+                } else {                             
+                    constructor = new ProcessBuilder("C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe", "--verbose", "--inserts", "--column-inserts", "-f", path);
+                    System.out.println("ERROR");
+                }
+                constructor.environment().put("PGHOST", "localhost");
+                constructor.environment().put("PGPORT", "5432");
+                constructor.environment().put("PGUSER", this.usuario);
+                constructor.environment().put("PGPASSWORD", this.password);
+                constructor.environment().put("PGDATABASE", bd);
+                constructor.redirectErrorStream(true);
+                proceso= constructor.start();
+                //escribirProcess(proceso);
+                System.out.println("terminado backup " + path);
+                hecho=true;
+            }else{
+                if(!path.equalsIgnoreCase("")) {
+                    constructor = new ProcessBuilder("/opt/PostgreSQL/9.4/bin/pg_dump", "--verbose", "--format", "sql", "-f", path);
+                } else {                             
+                    constructor = new ProcessBuilder("/opt/PostgreSQL/9.4/bin/pg_dump", "--verbose", "--inserts", "--column-inserts", "-f", path);
+                    System.out.println("ERROR");
+                }
+                constructor.environment().put("PGHOST", "localhost");
+                constructor.environment().put("PGPORT", "5432");
+                constructor.environment().put("PGUSER", this.usuario);
+                constructor.environment().put("PGPASSWORD", this.password);
+                constructor.environment().put("PGDATABASE", bd);
+                constructor.redirectErrorStream(true);
+                proceso= constructor.start();
+                //escribirProcess(proceso);
+                System.out.println("terminado backup " + path);
+                hecho=true;
+            }
+        }catch(Exception ex){
+            System.err.println(ex.getMessage()+ "Error de backup");
+            hecho=false;
+        }
+        return hecho;
+    }
+    
+    public void closeConexion() throws SQLException{
+        this.Conexion.close();
+    }
 } 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
@@ -159,10 +159,20 @@
                   </Border>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="rSButton4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="rSButton3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -174,9 +184,9 @@
                                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="rSMTextFull10" pref="790" max="32767" attributes="0"/>
-                                          <Component id="rSComboMetro10" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cmbDoctores" min="-2" pref="790" max="-2" attributes="0"/>
+                                          <Component id="cmbPacientes" min="-2" pref="790" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
@@ -184,29 +194,37 @@
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="rSComboMetro11" min="-2" pref="308" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="cmbTipoConsulta" min="-2" pref="308" max="-2" attributes="0"/>
+                                              <EmptySpace pref="86" max="32767" attributes="0"/>
                                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel19" alignment="1" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="rSMTextFull18" pref="308" max="32767" attributes="0"/>
-                                                  <Component id="rSMTextFull17" max="32767" attributes="0"/>
+                                                  <Component id="dcFecha" max="32767" attributes="0"/>
+                                                  <Component id="txtTotal" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                                                      <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="jLabel24" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="rSComboMetro9" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="rSMTextFull16" pref="325" max="32767" attributes="0"/>
+                                          <Component id="cmbEstado" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtHora" pref="325" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="rSComboMetro3" min="-2" pref="0" max="-2" attributes="0"/>
@@ -215,13 +233,6 @@
                           </Group>
                           <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="rSButton4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="rSButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -229,48 +240,57 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSMTextFull10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSComboMetro10" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbDoctores" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rSComboMetro11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbTipoConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="10" max="32767" attributes="0"/>
-                                  <Component id="rSComboMetro3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                                          <Component id="rSComboMetro3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="dcFecha" min="-2" pref="50" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="rSComboMetro9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="rSMTextFull18" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel21" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rSMTextFull16" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtHora" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="rSMTextFull17" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTotal" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="rSButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rSButton3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -345,7 +365,7 @@
                     <Property name="text" type="java.lang.String" value="Estado:"/>
                   </Properties>
                 </Component>
-                <Component class="rojeru_san.RSMTextFull" name="rSMTextFull10">
+                <Component class="rojeru_san.RSMTextFull" name="txtHora">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="88" green="6d" red="33" type="rgb"/>
@@ -353,42 +373,13 @@
                     <Property name="bordeColorFocus" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="88" green="6d" red="33" type="rgb"/>
                     </Property>
-                  </Properties>
-                </Component>
-                <Component class="rojeru_san.RSMTextFull" name="rSMTextFull16">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="bordeColorFocus" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="rojeru_san.RSMTextFull" name="rSMTextFull17">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="bordeColorFocus" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="rojerusan.RSComboMetro" name="rSComboMetro3">
-                </Component>
-                <Component class="rojeru_san.RSMTextFull" name="rSMTextFull18">
-                  <Properties>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
-                    <Property name="bordeColorFocus" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="88" green="6d" red="33" type="rgb"/>
-                    </Property>
+                    <Property name="placeholder" type="java.lang.String" value="Formato 24h"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSMTextFull18ActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoraKeyTyped"/>
                   </Events>
+                </Component>
+                <Component class="rojerusan.RSComboMetro" name="rSComboMetro3">
                 </Component>
                 <Component class="rojeru_san.RSButton" name="rSButton3">
                   <Properties>
@@ -400,17 +391,19 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="GUARDAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButton3ActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="rojerusan.RSComboMetro" name="rSComboMetro9">
+                <Component class="rojerusan.RSComboMetro" name="cmbEstado">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="88" green="6d" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Seleccione una opcion"/>
-                        <StringItem index="1" value="Doctor"/>
-                        <StringItem index="2" value="Secretaria"/>
+                      <StringArray count="2">
+                        <StringItem index="0" value="Pendiente"/>
+                        <StringItem index="1" value="Sin cita"/>
                       </StringArray>
                     </Property>
                     <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -430,16 +423,14 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="rojerusan.RSComboMetro" name="rSComboMetro10">
+                <Component class="rojerusan.RSComboMetro" name="cmbDoctores">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="88" green="6d" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Seleccione una opcion"/>
-                        <StringItem index="1" value="Doctor"/>
-                        <StringItem index="2" value="Secretaria"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="Seleccione una doctor"/>
                       </StringArray>
                     </Property>
                     <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -459,16 +450,14 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="rojerusan.RSComboMetro" name="rSComboMetro11">
+                <Component class="rojerusan.RSComboMetro" name="cmbTipoConsulta">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="88" green="6d" red="33" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Seleccione una opcion"/>
-                        <StringItem index="1" value="Doctor"/>
-                        <StringItem index="2" value="Secretaria"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="Seleccione una tipo de consulta"/>
                       </StringArray>
                     </Property>
                     <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -487,6 +476,9 @@
                       <Font name="Arial" size="12" style="0"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cmbTipoConsultaPopupMenuWillBecomeInvisible"/>
+                  </Events>
                 </Component>
                 <Component class="rojeru_san.RSButton" name="rSButton4">
                   <Properties>
@@ -495,6 +487,53 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="CANCELAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButton4ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="com.toedter.calendar.JDateChooser" name="dcFecha">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+                  </Properties>
+                </Component>
+                <Component class="rojerusan.RSComboMetro" name="cmbPacientes">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="88" green="6d" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Seleccione una opcion"/>
+                        <StringItem index="1" value="Doctor"/>
+                        <StringItem index="2" value="Secretaria"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="88" green="6d" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="colorBorde" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="88" green="6d" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="colorFondo" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="88" green="6d" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="colorSeleccion" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="88" green="6d" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="12" style="0"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel24">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="sin medicina"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtTotal">
                 </Component>
               </SubComponents>
             </Container>
@@ -526,20 +565,19 @@
                               <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="rSMTextFull1" min="-2" pref="501" max="-2" attributes="0"/>
+                                      <Component id="txtNombreFiltro" min="-2" pref="423" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="cmbEstadoFiltro" min="-2" pref="243" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="752" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane1" alignment="0" min="-2" pref="752" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="46" max="32767" attributes="0"/>
+                              <EmptySpace pref="47" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jPanel1" min="-2" pref="625" max="-2" attributes="0"/>
@@ -555,11 +593,12 @@
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rSMTextFull1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNombreFiltro" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="cmbEstadoFiltro" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="339" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="298" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnImprimir1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -567,13 +606,13 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                      <EmptySpace pref="233" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="rojeru_san.RSMTextFull" name="rSMTextFull1">
+            <Component class="rojeru_san.RSMTextFull" name="txtNombreFiltro">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="d6" green="be" red="f6" type="rgb"/>
@@ -588,7 +627,11 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
                 </Property>
+                <Property name="placeholder" type="java.lang.String" value="Buscar por paciente..."/>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreFiltroKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -604,10 +647,10 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="rojeru_san.complementos.RSTableMetro" name="rSTableMetro1">
+                <Component class="rojeru_san.complementos.RSTableMetro" name="tblAllConsultas">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="5" rowCount="4">
+                      <Table columnCount="5" rowCount="0">
                         <Column editable="true" title="Paciente" type="java.lang.Object"/>
                         <Column editable="true" title="Consulta" type="java.lang.Object"/>
                         <Column editable="true" title="Fecha" type="java.lang.Object"/>
@@ -623,6 +666,35 @@
                     </Property>
                     <Property name="colorFilasBackgound2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="fuenteFilas" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="12" style="1"/>
@@ -640,6 +712,9 @@
                     <Property name="rowHeight" type="int" value="35"/>
                     <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c2" green="9c" red="e7" type="rgb"/>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -1018,6 +1093,40 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
               </Properties>
+            </Component>
+            <Component class="rojerusan.RSComboMetro" name="cmbEstadoFiltro">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6d" red="33" type="rgb"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="5">
+                    <StringItem index="0" value="Todas"/>
+                    <StringItem index="1" value="Pendiente"/>
+                    <StringItem index="2" value="Local"/>
+                    <StringItem index="3" value="Cancelado"/>
+                    <StringItem index="4" value="Realizado"/>
+                  </StringArray>
+                </Property>
+                <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6d" red="33" type="rgb"/>
+                </Property>
+                <Property name="colorBorde" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6d" red="33" type="rgb"/>
+                </Property>
+                <Property name="colorFondo" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6d" red="33" type="rgb"/>
+                </Property>
+                <Property name="colorSeleccion" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6d" red="33" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="12" style="0"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cmbEstadoFiltroPopupMenuWillBecomeInvisible"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
