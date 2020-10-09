@@ -630,6 +630,7 @@
                 <Property name="placeholder" type="java.lang.String" value="Buscar por paciente..."/>
               </Properties>
               <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreFiltroActionPerformed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreFiltroKeyTyped"/>
               </Events>
             </Component>

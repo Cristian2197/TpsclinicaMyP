@@ -28,7 +28,34 @@ public class Paciente {
     public String getErrorSql() {   
         return errorSql;
     }
+    public String getNombreCompleto(){
+        return this.nombre + " " + this.apellido;
+    }
+    public String getEstadocivilNombre(){
+        String estado = String.valueOf(this.estado_civil);
+        if(estado.equals("C")){
+            return "Casado/a";
+        }else if(estado.equals("S")){
+            return "Soltero/a";
+        }else if(estado.equals("A")){
+            return "Acompañado/a";
+        }else if(estado.equals("D")){
+            return "Divorciado";
+        }else{
+            return "Error";
+        }
+    }
     
+    public String getSexoNombre(){
+        String sexo = String.valueOf(this.sexo);
+        if(sexo.equals("F")){
+            return "Femenino";
+        }else if(sexo.equals("M")){
+            return "Masculino";
+        }else{
+            return "No Binario";
+        }
+    }
     public int getId_paci() {
         return id_paci;
     }
@@ -76,7 +103,38 @@ public class Paciente {
     public String getFoto() {
         return foto;
     }
-
+    
+    public int getIndexSexo(){
+        switch (this.sexo) {
+            case 'M':
+                return 1;
+            case 'F':
+                return 0;
+            default:
+                return -1;
+        }
+    }
+/*
+    Seleccione una opcion
+    Soltero
+    Casado
+    Acompañado
+    Divorciado
+    */
+    public int getIndexEstadoCivil(){
+        switch (this.estado_civil) {
+            case 'S':
+                return 1;
+            case 'C':
+                return 2;
+            case 'A':
+                return 3;
+            case 'D':
+                return 4;
+            default:
+                return 0;
+        }
+    }
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Setters">
@@ -137,7 +195,13 @@ public class Paciente {
         PacientesBD paci = new PacientesBD();
         return paci.getAllPacientes(conn);
     }
+    public void PostPaciente(Paciente paci, Connection conn){
+        PacientesBD paciente = new PacientesBD();
+        paciente.InsertarPaciente(paci, conn);
+    }
     
-    
-    
+    public void UpdatePaciente(Paciente paci, Connection conn){
+        PacientesBD paciente = new PacientesBD();
+        paciente.ModificarPaciente(paci, conn);
+    }
 }

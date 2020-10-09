@@ -688,44 +688,47 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cincoMousePressed
 
     private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
-          new CambiaPanel(pnlPrincipal, new paneles.pnlPacientes());
-        if(this.dos.isSelected()){
-            this.dos.setColorNormal(new Color(49,143,181));
-            this.dos.setColorHover(new Color(49,143,181));
-            this.dos.setColorPressed(new Color(29,9,33));
+        if(this.emp.getId_puesto() != 1){
+            new CambiaPanel(pnlPrincipal, new paneles.pnlPacientes(this.conn, this.emp));
+            if(this.dos.isSelected()){
+                this.dos.setColorNormal(new Color(49,143,181));
+                this.dos.setColorHover(new Color(49,143,181));
+                this.dos.setColorPressed(new Color(29,9,33));
 
-            this.uno.setColorNormal(new Color(51,109,136));
-            this.uno.setColorHover(new Color(49,143,181));
-            this.uno.setColorPressed(new Color(29,9,33));
+                this.uno.setColorNormal(new Color(51,109,136));
+                this.uno.setColorHover(new Color(49,143,181));
+                this.uno.setColorPressed(new Color(29,9,33));
 
-            this.tres.setColorNormal(new Color(51,109,136));
-            this.tres.setColorHover(new Color(49,143,181));
-            this.tres.setColorPressed(new Color(29,9,33));
+                this.tres.setColorNormal(new Color(51,109,136));
+                this.tres.setColorHover(new Color(49,143,181));
+                this.tres.setColorPressed(new Color(29,9,33));
 
-            this.cuatro.setColorNormal(new Color(51,109,136));
-            this.cuatro.setColorHover(new Color(49,143,181));
-            this.cuatro.setColorPressed(new Color(29,9,33));
+                this.cuatro.setColorNormal(new Color(51,109,136));
+                this.cuatro.setColorHover(new Color(49,143,181));
+                this.cuatro.setColorPressed(new Color(29,9,33));
 
-            this.cinco.setColorNormal(new Color(51,109,136));
-            this.cinco.setColorHover(new Color(49,143,181));
-            this.cinco.setColorPressed(new Color(29,9,33));
+                this.cinco.setColorNormal(new Color(51,109,136));
+                this.cinco.setColorHover(new Color(49,143,181));
+                this.cinco.setColorPressed(new Color(29,9,33));
 
-            this.seis.setColorNormal(new Color(51,109,136));
-            this.seis.setColorHover(new Color(49,143,181));
-            this.seis.setColorPressed(new Color(29,9,33));
+                this.seis.setColorNormal(new Color(51,109,136));
+                this.seis.setColorHover(new Color(49,143,181));
+                this.seis.setColorPressed(new Color(29,9,33));
 
-            this.siete.setColorNormal(new Color(51,109,136));
-            this.siete.setColorHover(new Color(49,143,181));
-            this.siete.setColorPressed(new Color(29,9,33));
+                this.siete.setColorNormal(new Color(51,109,136));
+                this.siete.setColorHover(new Color(49,143,181));
+                this.siete.setColorPressed(new Color(29,9,33));
 
-            this.ocho.setColorNormal(new Color(51,109,136));
-            this.ocho.setColorHover(new Color(49,143,181));
-            this.ocho.setColorPressed(new Color(29,9,33));
-        }else{
-            this.dos.setColorNormal(new Color(51,109,136));
-            this.dos.setColorHover(new Color(49,143,181));
-            this.dos.setColorPressed(new Color(29,9,33));
-        }
+                this.ocho.setColorNormal(new Color(51,109,136));
+                this.ocho.setColorHover(new Color(49,143,181));
+                this.ocho.setColorPressed(new Color(29,9,33));
+            }else{
+                this.dos.setColorNormal(new Color(51,109,136));
+                this.dos.setColorHover(new Color(49,143,181));
+                this.dos.setColorPressed(new Color(29,9,33));
+            }
+        }  
+        
     }//GEN-LAST:event_dosActionPerformed
 
     private void dosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dosMousePressed

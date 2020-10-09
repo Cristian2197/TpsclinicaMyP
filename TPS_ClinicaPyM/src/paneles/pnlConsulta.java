@@ -436,6 +436,11 @@ public class pnlConsulta extends javax.swing.JPanel {
         txtNombreFiltro.setBordeColorFocus(new java.awt.Color(51, 109, 136));
         txtNombreFiltro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtNombreFiltro.setPlaceholder("Buscar por paciente...");
+        txtNombreFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreFiltroActionPerformed(evt);
+            }
+        });
         txtNombreFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreFiltroKeyTyped(evt);
@@ -781,6 +786,10 @@ public class pnlConsulta extends javax.swing.JPanel {
             Logger.getLogger(pnlConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cmbEstadoFiltroPopupMenuWillBecomeInvisible
+
+    private void txtNombreFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreFiltroActionPerformed
     ArrayList<ConsultaVista> listaFiltrada;
     public void filtarLista() throws SQLException{
         this.listaFiltrada = new ArrayList<>();
