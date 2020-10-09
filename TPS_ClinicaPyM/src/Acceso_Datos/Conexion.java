@@ -12,21 +12,23 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import jdk.nashorn.internal.ir.TryNode;
 import java.io.File;
+import java.io.IOException;
 
 public class Conexion {
-    private Process proceso;
-    private ProcessBuilder constructor;
-    
+   
     private String users[] = {"invitado", "doctor", "secretario", "sistemas"};
     private String passwords[] = {"12345", "12345", "54321", "00000"};
     //private static String us = "root";
     //private static String pas = "00000";
-    private static String bd = "clinicaMyP";
-    private static String url = "jdbc:postgresql://localhost:5432/"+bd;
+    private String bd = "clinicaMyP";
+    private String url = "jdbc:postgresql://localhost:5432/"+bd;
     //private static String usuario = "sistemas";
     private String usuario;
     private String password;
     Connection Conexion = null;
+    Process p;
+    ProcessBuilder pb;
+    Runtime r;
    
     public Conexion( int tipo) {
       
@@ -47,49 +49,37 @@ public class Conexion {
         
     public boolean Backup(String path){
         boolean hecho=false;
+        r = Runtime.getRuntime();   
         try{
-            File pgdump= new File("C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe");
-            if(pgdump.exists()){
-                if(!path.equalsIgnoreCase("")) {
-                    constructor = new ProcessBuilder(
-                            "C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe", "--verbose", "--format", ".sql", "-f", path);
-                } else {                             
-                    constructor = new ProcessBuilder("C:/Program Files/PostgreSQL/9.4/bin\\pg_dump.exe", "--verbose", "--inserts", "--column-inserts", "-f", path);
-                    System.out.println("ERROR");
-                }
-                constructor.environment().put("PGHOST", "localhost");
-                constructor.environment().put("PGPORT", "5432");
-                constructor.environment().put("PGUSER", this.usuario);
-                constructor.environment().put("PGPASSWORD", this.password);
-                constructor.environment().put("PGDATABASE", bd);
-                constructor.redirectErrorStream(true);
-                proceso= constructor.start();
-                //escribirProcess(proceso);
-                System.out.println("terminado backup " + path);
-                hecho=true;
-            }else{
-                if(!path.equalsIgnoreCase("")) {
-                    constructor = new ProcessBuilder("/opt/PostgreSQL/9.4/bin/pg_dump", "--verbose", "--format", "sql", "-f", path);
-                } else {                             
-                    constructor = new ProcessBuilder("/opt/PostgreSQL/9.4/bin/pg_dump", "--verbose", "--inserts", "--column-inserts", "-f", path);
-                    System.out.println("ERROR");
-                }
-                constructor.environment().put("PGHOST", "localhost");
-                constructor.environment().put("PGPORT", "5432");
-                constructor.environment().put("PGUSER", this.usuario);
-                constructor.environment().put("PGPASSWORD", this.password);
-                constructor.environment().put("PGDATABASE", bd);
-                constructor.redirectErrorStream(true);
-                proceso= constructor.start();
-                //escribirProcess(proceso);
-                System.out.println("terminado backup " + path);
-                hecho=true;
-            }
+            r = Runtime.getRuntime();        
+            pb =  new ProcessBuilder("C:\\Program Files\\PostgreSQL\\11\\bin\\pg_dump.exe",
+                    "--verbose", "--format", "custom", "-f", path);
+            
+            pb.environment().put("PGHOST", "localhost");
+            pb.environment().put("PGPORT", "5432");
+            pb.environment().put("PGUSER", usuario);
+            pb.environment().put("PGPASSWORD", password);
+            pb.environment().put("PGDATABASE", bd);
+            pb.redirectErrorStream(true);
+            p = pb.start();     
+            hecho=true;
         }catch(Exception ex){
             System.err.println(ex.getMessage()+ "Error de backup");
             hecho=false;
         }
         return hecho;
+    }
+    public boolean Restore(String path) throws IOException{
+        boolean hecho = false;
+        try {
+            String comando = "pg_restore -i -h localhost -p 5432 -U " + this.usuario + " -W " + this.password + " -d " + bd + " -v \" " + path + " ";
+            Runtime.getRuntime ().exec ( comando );
+            hecho = true;
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage()+ "Error de backup");
+            hecho = false;
+        }
+       return hecho;
     }
     
     public void closeConexion() throws SQLException{

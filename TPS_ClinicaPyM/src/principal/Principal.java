@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import paneles.CambiaPanel;
 import java.sql.Connection;
+import Acceso_Datos.Conexion;
 import Logica_Negocio.Empleados;
 import java.sql.SQLException;
 import paneles.pnlHome;
@@ -26,6 +27,7 @@ public class Principal extends javax.swing.JFrame {
 
     int x, y;
     Connection conn;
+    Conexion conect;
     Empleados emp;
     public Principal() {
         initComponents();
@@ -34,8 +36,9 @@ public class Principal extends javax.swing.JFrame {
         this.uno.setSelected(true);
     }
     
-    public void setConData(Connection conexion, Empleados emp) throws SQLException{
-        this.conn = conexion;
+    public void setConData(Conexion conexion, Empleados emp) throws SQLException{
+        this.conn = conexion.getConexion();
+        this.conect = conexion;
         this.emp = emp;
         pnlHome panel = new pnlHome(this.conn, this.emp);
         new CambiaPanel(pnlPrincipal, panel);
@@ -525,7 +528,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_seisMousePressed
 
     private void sieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sieteActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.pnlBackup());
+        try {
+            new CambiaPanel(pnlPrincipal, new paneles.pnlBackup(this.conect));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if(this.siete.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));
             this.uno.setColorHover(new Color(49,143,181));

@@ -116,9 +116,8 @@ hilo ejecutar = new hilo();
         @Override
         public void run(){
             //Conecto la base solo una vez y se lo envío a los demas form
-            Connection conexion;
             Conexion con = new Conexion(0);
-            conexion = con.getConexion();
+            Connection conexion = con.getConexion();
             
             try {while(true){
                 auxiliar++;

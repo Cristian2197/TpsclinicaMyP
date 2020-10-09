@@ -216,7 +216,7 @@ public class frmloguinn extends javax.swing.JFrame {
                 this.btnError.setVisible(false);
                 Principal prin = new Principal();
                 try {
-                    prin.setConData(this.conexion.getConexion(), empleadoVal);
+                    prin.setConData(this.conexion, empleadoVal);
                 } catch (SQLException ex) {
                     Logger.getLogger(frmloguinn.class.getName()).log(Level.SEVERE, null, ex);
                 }
