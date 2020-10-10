@@ -72,11 +72,15 @@ public class Conexion {
     public boolean Restore(String path) throws IOException{
         boolean hecho = false;
         try {
-            String comando = "pg_restore -i -h localhost -p 5432 -U " + this.usuario + " -W " + this.password + " -d " + bd + " -v \" " + path + " ";
-            Runtime.getRuntime ().exec ( comando );
+            
+            r = Runtime.getRuntime(); 
+            pb = new ProcessBuilder("C:/Program Files/PostgreSQL/9.4/bin\\pg_restore.exe", "-i", "-h", "localhost", "-p", "5432", "-U", this.usuario, "-d", bd, "-v", path);
+            pb.environment().put("PGPASSWORD", this.password);
+            pb.redirectErrorStream(true);
+            p = pb.start();   
             hecho = true;
         } catch (Exception ex) {
-            System.err.println(ex.getMessage()+ "Error de backup");
+            System.err.println(ex.getMessage()+ "Error de restore");
             hecho = false;
         }
        return hecho;

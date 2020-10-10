@@ -16,7 +16,7 @@ public class EmpleadosBD {
         {
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(
-                "SELECT * FROM validarusuario('"+emp.getUsuario()+"','"+emp.getContraseña()+"');"
+                "SELECT * FROM public.validarusuario('"+emp.getUsuario()+"','"+emp.getContraseña()+"');"
             );
             if(rs != null){
                 while(rs.next()){

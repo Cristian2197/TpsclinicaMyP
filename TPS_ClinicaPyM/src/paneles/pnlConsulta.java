@@ -1,12 +1,14 @@
 
 package paneles;
 
+import paneles.CambiaPanel;
 import Logica_Negocio.ConsultaVista;
 import Logica_Negocio.Consultas;
 import java.sql.Connection;
 import Logica_Negocio.Empleados;
 import Logica_Negocio.Paciente;
 import Logica_Negocio.TipoConsulta;
+import java.awt.Color;
 import java.awt.PopupMenu;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -21,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.RowFilter;
 import javax.swing.SpinnerDateModel;
@@ -40,11 +43,12 @@ public class pnlConsulta extends javax.swing.JPanel {
     ArrayList<TipoConsulta> tipoLst = new ArrayList<>();
     ArrayList<Consultas> consLst = new ArrayList<>();
     ArrayList<ConsultaVista> conView = new ArrayList<>();
-    
-    public pnlConsulta(Connection con, Empleados emp) throws SQLException {
+    JPanel pnlPrincipal;
+    public pnlConsulta(Connection con, Empleados emp, JPanel pnel) throws SQLException {
         initComponents();
         this.conn = con;
         this.empleado = emp;
+        this.pnlPrincipal = pnel;
         this.InicializarCampos();
     }
 
@@ -82,6 +86,23 @@ public class pnlConsulta extends javax.swing.JPanel {
         }
     }
     
+     private void LlenarComboDoctoresCamb(ArrayList<Empleados> Datos){
+        if(this.cmbDoctoresDisp.getItemCount()> 0){
+            this.cmbDoctoresDisp.removeAllItems();
+            
+        }
+        if(Datos.size() > 0){
+            this.cmbDoctoresDisp.addItem("Seleccione al doctor");
+            for (int i = 0; i < Datos.size(); i++) {
+                Empleados emp = Datos.get(i);
+                String campo=emp.getNombre() + " " + emp.getApellido();
+                this.cmbDoctoresDisp.addItem(campo);
+            }
+        }else{
+            this.cmbDoctoresDisp.addItem("No hay doctores, registrarlo antes de crear la consulta");
+        }
+    }
+    
     public void LlenarComboTipos(ArrayList<TipoConsulta> Datos){
         if(this.cmbTipoConsulta.getItemCount()> 0){
             this.cmbTipoConsulta.removeAllItems();
@@ -96,6 +117,23 @@ public class pnlConsulta extends javax.swing.JPanel {
             }
         }else{
             this.cmbTipoConsulta.addItem("No hay tipos, registrarlo antes de crear la consulta");
+        }
+    }
+    
+    public void LlenarComboTiposCamb(ArrayList<TipoConsulta> Datos){
+        if(this.cmbConsultaTipo.getItemCount()> 0){
+            this.cmbConsultaTipo.removeAllItems();
+            
+        }
+        if(Datos.size() > 0){
+            this.cmbConsultaTipo.addItem("Seleccione el tipo");
+            for (int i = 0; i < Datos.size(); i++) {
+                TipoConsulta tp = Datos.get(i);
+                this.cmbConsultaTipo.addItem(tp.getNombre());
+                
+            }
+        }else{
+            this.cmbConsultaTipo.addItem("No hay tipos, registrarlo antes de crear la consulta");
         }
     }
     
@@ -138,7 +176,6 @@ public class pnlConsulta extends javax.swing.JPanel {
         tblAllConsultas = new rojeru_san.complementos.RSTableMetro();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -146,21 +183,22 @@ public class pnlConsulta extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        rSMTextFull8 = new rojeru_san.RSMTextFull();
-        rSMTextFull12 = new rojeru_san.RSMTextFull();
-        rSMTextFull14 = new rojeru_san.RSMTextFull();
+        txtNombrePaciente = new rojeru_san.RSMTextFull();
+        txtHoraCambio = new rojeru_san.RSMTextFull();
+        txtTotalCambio = new rojeru_san.RSMTextFull();
         rSComboMetro2 = new rojerusan.RSComboMetro();
-        rSMTextFull15 = new rojeru_san.RSMTextFull();
-        rSComboMetro6 = new rojerusan.RSComboMetro();
-        rSComboMetro7 = new rojerusan.RSComboMetro();
-        rSComboMetro8 = new rojerusan.RSComboMetro();
+        txtEstadoConsulta = new rojeru_san.RSMTextFull();
+        cmbDoctoresDisp = new rojerusan.RSComboMetro();
+        cmbConsultaTipo = new rojerusan.RSComboMetro();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        rSButton5 = new rojeru_san.RSButton();
+        txtDiagnostico = new javax.swing.JTextArea();
         btnGuardar1 = new rojeru_san.RSButton();
+        dcFechaCamb = new com.toedter.calendar.JDateChooser();
+        txtIdConsulta = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
         btnEliminar = new rojeru_san.RSButton();
         btnImprimir1 = new rojeru_san.RSButton();
-        cmbEstadoFiltro = new rojerusan.RSComboMetro();
+        rSButton5 = new rojeru_san.RSButton();
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setText("Paciente:");
@@ -469,18 +507,19 @@ public class pnlConsulta extends javax.swing.JPanel {
         tblAllConsultas.setGrosorBordeHead(0);
         tblAllConsultas.setRowHeight(35);
         tblAllConsultas.setSelectionBackground(new java.awt.Color(231, 156, 194));
+        tblAllConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAllConsultasMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblAllConsultas);
 
         jPanel1.setBackground(new java.awt.Color(246, 190, 214));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("Paciente:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 94, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setText("Datos de la consulta");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+        jLabel6.setText("ID:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Doctor:");
@@ -508,72 +547,67 @@ public class pnlConsulta extends javax.swing.JPanel {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setText("Diagnostico:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
-        rSMTextFull8.setForeground(new java.awt.Color(51, 109, 136));
-        rSMTextFull8.setBordeColorFocus(new java.awt.Color(51, 109, 136));
-        jPanel1.add(rSMTextFull8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 450, -1));
+        txtNombrePaciente.setForeground(new java.awt.Color(51, 109, 136));
+        txtNombrePaciente.setBordeColorFocus(new java.awt.Color(51, 109, 136));
+        txtNombrePaciente.setEnabled(false);
+        jPanel1.add(txtNombrePaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 450, -1));
 
-        rSMTextFull12.setForeground(new java.awt.Color(51, 109, 136));
-        rSMTextFull12.setBordeColorFocus(new java.awt.Color(51, 109, 136));
-        jPanel1.add(rSMTextFull12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 170, -1));
+        txtHoraCambio.setForeground(new java.awt.Color(51, 109, 136));
+        txtHoraCambio.setBordeColorFocus(new java.awt.Color(51, 109, 136));
+        jPanel1.add(txtHoraCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 170, -1));
 
-        rSMTextFull14.setForeground(new java.awt.Color(51, 109, 136));
-        rSMTextFull14.setBordeColorFocus(new java.awt.Color(51, 109, 136));
-        jPanel1.add(rSMTextFull14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 450, -1));
+        txtTotalCambio.setForeground(new java.awt.Color(51, 109, 136));
+        txtTotalCambio.setBordeColorFocus(new java.awt.Color(51, 109, 136));
+        jPanel1.add(txtTotalCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 450, -1));
         jPanel1.add(rSComboMetro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(564, 221, 0, -1));
 
-        rSMTextFull15.setForeground(new java.awt.Color(51, 109, 136));
-        rSMTextFull15.setBordeColorFocus(new java.awt.Color(51, 109, 136));
-        jPanel1.add(rSMTextFull15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 170, -1));
+        txtEstadoConsulta.setForeground(new java.awt.Color(51, 109, 136));
+        txtEstadoConsulta.setBordeColorFocus(new java.awt.Color(51, 109, 136));
+        txtEstadoConsulta.setEnabled(false);
+        jPanel1.add(txtEstadoConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 170, -1));
 
-        rSComboMetro6.setBackground(new java.awt.Color(51, 109, 136));
-        rSComboMetro6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Activo", "..." }));
-        rSComboMetro6.setColorArrow(new java.awt.Color(51, 109, 136));
-        rSComboMetro6.setColorBorde(new java.awt.Color(51, 109, 136));
-        rSComboMetro6.setColorFondo(new java.awt.Color(51, 109, 136));
-        rSComboMetro6.setColorSeleccion(new java.awt.Color(51, 109, 136));
-        rSComboMetro6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel1.add(rSComboMetro6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 170, 40));
+        cmbDoctoresDisp.setBackground(new java.awt.Color(51, 109, 136));
+        cmbDoctoresDisp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Dra. Soraya Cornejo" }));
+        cmbDoctoresDisp.setColorArrow(new java.awt.Color(51, 109, 136));
+        cmbDoctoresDisp.setColorBorde(new java.awt.Color(51, 109, 136));
+        cmbDoctoresDisp.setColorFondo(new java.awt.Color(51, 109, 136));
+        cmbDoctoresDisp.setColorSeleccion(new java.awt.Color(51, 109, 136));
+        cmbDoctoresDisp.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel1.add(cmbDoctoresDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 450, -1));
 
-        rSComboMetro7.setBackground(new java.awt.Color(51, 109, 136));
-        rSComboMetro7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Dra. Soraya Cornejo" }));
-        rSComboMetro7.setColorArrow(new java.awt.Color(51, 109, 136));
-        rSComboMetro7.setColorBorde(new java.awt.Color(51, 109, 136));
-        rSComboMetro7.setColorFondo(new java.awt.Color(51, 109, 136));
-        rSComboMetro7.setColorSeleccion(new java.awt.Color(51, 109, 136));
-        rSComboMetro7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel1.add(rSComboMetro7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 450, -1));
+        cmbConsultaTipo.setBackground(new java.awt.Color(51, 109, 136));
+        cmbConsultaTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Consulta general" }));
+        cmbConsultaTipo.setColorArrow(new java.awt.Color(51, 109, 136));
+        cmbConsultaTipo.setColorBorde(new java.awt.Color(51, 109, 136));
+        cmbConsultaTipo.setColorFondo(new java.awt.Color(51, 109, 136));
+        cmbConsultaTipo.setColorSeleccion(new java.awt.Color(51, 109, 136));
+        cmbConsultaTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanel1.add(cmbConsultaTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 170, 40));
 
-        rSComboMetro8.setBackground(new java.awt.Color(51, 109, 136));
-        rSComboMetro8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Consulta general" }));
-        rSComboMetro8.setColorArrow(new java.awt.Color(51, 109, 136));
-        rSComboMetro8.setColorBorde(new java.awt.Color(51, 109, 136));
-        rSComboMetro8.setColorFondo(new java.awt.Color(51, 109, 136));
-        rSComboMetro8.setColorSeleccion(new java.awt.Color(51, 109, 136));
-        rSComboMetro8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel1.add(rSComboMetro8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 170, 40));
+        txtDiagnostico.setColumns(20);
+        txtDiagnostico.setRows(5);
+        jScrollPane4.setViewportView(txtDiagnostico);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
-
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 400, 440, -1));
-
-        rSButton5.setBackground(new java.awt.Color(51, 109, 136));
-        rSButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/Save.png"))); // NOI18N
-        rSButton5.setText("GUARDAR");
-        rSButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rSButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 500, -1, -1));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 450, 110));
 
         btnGuardar1.setBackground(new java.awt.Color(255, 0, 51));
         btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancel_121896 (2).png"))); // NOI18N
         btnGuardar1.setText("CANCELAR");
         jPanel1.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, -1, -1));
+
+        dcFechaCamb.setDateFormatString("dd-MM-yyyy");
+        jPanel1.add(dcFechaCamb, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 170, 40));
+
+        txtIdConsulta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtIdConsulta.setAutoscrolls(false);
+        txtIdConsulta.setEnabled(false);
+        jPanel1.add(txtIdConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 130, -1));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel25.setText("Paciente:");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 94, -1, -1));
 
         btnEliminar.setBackground(new java.awt.Color(51, 109, 136));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/ELIMINAR1.png"))); // NOI18N
@@ -583,20 +617,12 @@ public class pnlConsulta extends javax.swing.JPanel {
         btnImprimir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/IMPRIMIR2.png"))); // NOI18N
         btnImprimir1.setText("IMPRIMIR");
 
-        cmbEstadoFiltro.setBackground(new java.awt.Color(51, 109, 136));
-        cmbEstadoFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Todas", "Pendiente", "Local", "Cancelado", "Realizado" }));
-        cmbEstadoFiltro.setColorArrow(new java.awt.Color(51, 109, 136));
-        cmbEstadoFiltro.setColorBorde(new java.awt.Color(51, 109, 136));
-        cmbEstadoFiltro.setColorFondo(new java.awt.Color(51, 109, 136));
-        cmbEstadoFiltro.setColorSeleccion(new java.awt.Color(51, 109, 136));
-        cmbEstadoFiltro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cmbEstadoFiltro.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                cmbEstadoFiltroPopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+        rSButton5.setBackground(new java.awt.Color(51, 109, 136));
+        rSButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/Save.png"))); // NOI18N
+        rSButton5.setText("GUARDAR");
+        rSButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButton5ActionPerformed(evt);
             }
         });
 
@@ -614,14 +640,14 @@ public class pnlConsulta extends javax.swing.JPanel {
                         .addGap(43, 43, 43))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtNombreFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addGap(31, 31, 31)
-                                .addComponent(cmbEstadoFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rSButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(txtNombreFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel2))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
@@ -635,11 +661,12 @@ public class pnlConsulta extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombreFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbEstadoFiltro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rSButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -673,10 +700,65 @@ public class pnlConsulta extends javax.swing.JPanel {
     }
         
     private void rSButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButton5ActionPerformed
-        pnlMedicina llamada = new pnlMedicina (this.conn, this.empleado);
-        llamada.setVisible(true);
+        int indexDoc = this.cmbDoctoresDisp.getSelectedIndex();
+        int indexTipo = this.cmbConsultaTipo.getSelectedIndex();
+        int indexEstado = this.cmbEstado.getSelectedIndex();
+        Consultas consulta = new Consultas();
+        String estado;
+        if(this.txtDiagnostico.getText().length() > 0){
+            estado = "S";
+            consulta.setDiagnostico(this.txtDiagnostico.getText());
+        }else{
+            estado = "P";
+            consulta.setDiagnostico("Pendiente");
+        }
+        java.util.Date fechaN = this.dcFechaCamb.getDate();
+        Date fecha = new Date(fechaN.getTime());
+        String hora = this.txtHoraCambio.getText();
+        Double total = Double.valueOf(this.txtTotalCambio.getText().substring(2));
+        Empleados doctor = this.empList.get(indexDoc-1);
+        //Paciente paciente = this.pacientes.get(this.conv.getId_paciente());
+        TipoConsulta tipo = this.tipoLst.get(indexTipo-1);
+        consulta.setDiagnostico(this.txtDiagnostico.getText());
+        consulta.setFecha(fecha);
+        consulta.setTotal(total);
+        consulta.setHora(Time.valueOf(hora));
+        consulta.setId_tipoConsul(tipo.getId_tipoConsul());
+        consulta.setId_emp(doctor.getId_emp());
+        consulta.setId_paciente(this.conv.getId_paciente());
+        consulta.setEstado(estado);
+        consulta.setId_consul(Integer.valueOf(this.txtIdConsulta.getText()));
+        if(!consulta.UpdateConsulta(consulta, conn)){
+            JOptionPane.showMessageDialog(null, "Algo salió mal ");
+        }else{
+            try {
+                this.conView = this.cv.getAllConsultas(conn);
+                this.LlenarTabla(this.conView);
+                this.VaciarCamposModificar();
+                this.CambiaRecetas();
+                this.setVisible(false);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(pnlConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_rSButton5ActionPerformed
-
+    private void CambiaRecetas(){
+        new CambiaPanel(this.pnlPrincipal, new Recetas(this.conn, this.conv));
+    }
+    
+    public void VaciarCamposModificar(){
+        this.txtIdConsulta.setText(null);
+        this.txtDiagnostico.setText(null);
+        this.txtHoraCambio.setText(null);
+        this.cmbConsultaTipo.setSelectedIndex(0);
+        this.cmbDoctoresDisp.setSelectedIndex(0);
+        this.txtNombrePaciente.setText(null);
+        this.txtEstadoConsulta.setText(null);
+        this.txtTotalCambio.setText(null);
+        this.dcFechaCamb.setDate(null);
+    }
+    
     private void cmbTipoConsultaPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbTipoConsultaPopupMenuWillBecomeInvisible
        TipoConsulta tp = new TipoConsulta();
         int index = this.cmbTipoConsulta.getSelectedIndex();
@@ -779,31 +861,45 @@ public class pnlConsulta extends javax.swing.JPanel {
         this.tblAllConsultas.setRowSorter(trs);
     }//GEN-LAST:event_txtNombreFiltroKeyTyped
 
-    private void cmbEstadoFiltroPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbEstadoFiltroPopupMenuWillBecomeInvisible
-        try {
-            this.filtarLista();
-        } catch (SQLException ex) {
-            Logger.getLogger(pnlConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_cmbEstadoFiltroPopupMenuWillBecomeInvisible
-
     private void txtNombreFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreFiltroActionPerformed
-    ArrayList<ConsultaVista> listaFiltrada;
-    public void filtarLista() throws SQLException{
-        this.listaFiltrada = new ArrayList<>();
-        if(this.cmbEstadoFiltro.getSelectedIndex() > 0){
-            conView.forEach((current) -> {
-                if(current.getEstadoValue().equals(this.cmbEstadoFiltro.getSelectedItem().toString())){
-                    this.listaFiltrada.add(current);
-                }
-            });
-            this.LlenarTabla(this.listaFiltrada);
+    ConsultaVista conv ;
+    private void tblAllConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAllConsultasMouseClicked
+        int index = this.tblAllConsultas.getSelectedRow();
+        ArrayList<ConsultaVista> consLocal = new ArrayList<>();
+        if(this.tblAllConsultas.getRowCount() == this.conView.size()){
+            this.conv = this.conView.get(index);
+            //this.LlenarCampo(this.conv);
         }else{
-            this.LlenarTabla(this.conView);
+            String texto = this.txtNombreFiltro.getText();
+            for (int i = 0; i < this.conView.size(); i++) {
+                ConsultaVista c = this.conView.get(i);
+                if( c.getNombre_paciente().toLowerCase().indexOf(texto.toLowerCase()) >= 0){
+                    consLocal.add(c);
+                }
+            }
+            this.conv = consLocal.get(index);
         }
+        this.LlenarCampo(this.conv);
+    }//GEN-LAST:event_tblAllConsultasMouseClicked
+    
+    public void LlenarCampo(ConsultaVista conv){
+        this.empList = empleado.GetAllEmpleadosEspe(conn, conv.getId_tipo_consulta());
+        this.LlenarComboDoctoresCamb(empList);
+        this.LlenarComboTiposCamb(this.tipoLst);
+        this.txtEstadoConsulta.setText(conv.getEstado());
+        this.txtNombrePaciente.setText(conv.getNombre_paciente());
+        this.txtHoraCambio.setText(conv.getHora().toString());
+        this.dcFechaCamb.setDate(conv.getFecha());
+        this.txtTotalCambio.setText("$ " + conv.getTotal());
+        this.cmbDoctoresDisp.setSelectedItem(conv.getNombre_doctor());
+        this.cmbConsultaTipo.setSelectedItem(conv.getTipo_consulta());
+        this.txtIdConsulta.setText(String.valueOf(conv.getId_consulta()));
+        this.conv = conv;
     }
+    
+    
     DefaultTableModel model;
     public void LlenarTabla(ArrayList<ConsultaVista> array) throws SQLException{
         //Collections.sort(array, Collections.reverseOrder());
@@ -836,12 +932,14 @@ public class pnlConsulta extends javax.swing.JPanel {
     private rojeru_san.RSButton btnEliminar;
     private rojeru_san.RSButton btnGuardar1;
     private rojeru_san.RSButton btnImprimir1;
+    private rojerusan.RSComboMetro cmbConsultaTipo;
     private rojerusan.RSComboMetro cmbDoctores;
+    private rojerusan.RSComboMetro cmbDoctoresDisp;
     private rojerusan.RSComboMetro cmbEstado;
-    private rojerusan.RSComboMetro cmbEstadoFiltro;
     private rojerusan.RSComboMetro cmbPacientes;
     private rojerusan.RSComboMetro cmbTipoConsulta;
     private com.toedter.calendar.JDateChooser dcFecha;
+    private com.toedter.calendar.JDateChooser dcFechaCamb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -859,8 +957,8 @@ public class pnlConsulta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -870,24 +968,22 @@ public class pnlConsulta extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private rojeru_san.RSButton rSButton3;
     private rojeru_san.RSButton rSButton4;
     private rojeru_san.RSButton rSButton5;
     private rojerusan.RSComboMetro rSComboMetro2;
     private rojerusan.RSComboMetro rSComboMetro3;
-    private rojerusan.RSComboMetro rSComboMetro6;
-    private rojerusan.RSComboMetro rSComboMetro7;
-    private rojerusan.RSComboMetro rSComboMetro8;
     private rojeru_san.RSMTextFull rSMTextFull11;
-    private rojeru_san.RSMTextFull rSMTextFull12;
     private rojeru_san.RSMTextFull rSMTextFull13;
-    private rojeru_san.RSMTextFull rSMTextFull14;
-    private rojeru_san.RSMTextFull rSMTextFull15;
-    private rojeru_san.RSMTextFull rSMTextFull8;
     private rojeru_san.complementos.RSTableMetro tblAllConsultas;
+    private javax.swing.JTextArea txtDiagnostico;
+    private rojeru_san.RSMTextFull txtEstadoConsulta;
     private rojeru_san.RSMTextFull txtHora;
+    private rojeru_san.RSMTextFull txtHoraCambio;
+    private javax.swing.JTextField txtIdConsulta;
     private rojeru_san.RSMTextFull txtNombreFiltro;
+    private rojeru_san.RSMTextFull txtNombrePaciente;
     private javax.swing.JTextField txtTotal;
+    private rojeru_san.RSMTextFull txtTotalCambio;
     // End of variables declaration//GEN-END:variables
 }

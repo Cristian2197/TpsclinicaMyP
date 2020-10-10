@@ -6,6 +6,7 @@
 package paneles;
 
 import Acceso_Datos.Conexion;
+import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ public class pnlBackup extends javax.swing.JPanel {
         initComponents();
         this.conn = con;
         this.fcFileChoosr.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        
+        this.fcChooserFile.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +33,7 @@ public class pnlBackup extends javax.swing.JPanel {
         txtNombre3 = new javax.swing.JLabel();
         rSMTextFull6 = new rojeru_san.RSMTextFull();
         fcFileChoosr = new javax.swing.JFileChooser();
+        fcChooserFile = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -129,13 +131,25 @@ public class pnlBackup extends javax.swing.JPanel {
         //this.fcFileChoosr.setfile
         int Accept = this.fcFileChoosr.showOpenDialog(this);
         if(Accept == JFileChooser.APPROVE_OPTION){
-            String path = this.fcFileChoosr.getSelectedFile().getAbsolutePath() + "\\" + nombre;
+            String path = this.fcChooserFile.getSelectedFile().getAbsolutePath() + "\\" + nombre;
             this.conn.Backup(path);
         }
     }//GEN-LAST:event_btnCopiaActionPerformed
 
     private void btnCopia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopia1ActionPerformed
-        
+        String nombre = "Backup_" + this.hoy.getTime() + ".sql";
+        this.fcChooserFile.setDialogTitle("Abrir...");
+        this.fcChooserFile.setApproveButtonText("Seleccionar Archivo");
+        //this.fcFileChoosr.setfile
+        int Accept = this.fcChooserFile.showOpenDialog(this);
+        if(Accept == JFileChooser.APPROVE_OPTION){
+            try {
+                String path = this.fcChooserFile.getSelectedFile().getAbsolutePath();
+                this.conn.Restore(path);
+            } catch (IOException ex) {
+                Logger.getLogger(pnlBackup.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnCopia1ActionPerformed
 
 
@@ -143,6 +157,7 @@ public class pnlBackup extends javax.swing.JPanel {
     private rojeru_san.RSButton btnCopia;
     private rojeru_san.RSButton btnCopia1;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JFileChooser fcChooserFile;
     private javax.swing.JFileChooser fcFileChoosr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

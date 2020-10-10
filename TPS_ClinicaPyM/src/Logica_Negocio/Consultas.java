@@ -27,6 +27,10 @@ public class Consultas {
         return id_consul;
     }
 
+    public String getEstadoChar(){
+        return this.estado;
+    }
+    
     public int getId_paci() {
         return id_paci;
     }
@@ -122,5 +126,10 @@ public class Consultas {
     public boolean AddConsulta(Consultas consu, Connection conn){
         ConsultaBD consulta = new ConsultaBD();
         return consulta.insertarConsulta(consu, conn);
+    }
+    
+    public boolean UpdateConsulta(Consultas consu, Connection conn){
+        ConsultaBD consulta = new ConsultaBD();
+        return consulta.modificarConsulta(consu, conn);
     }
 }

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class ConsultaBD {
     
@@ -115,4 +116,27 @@ public class ConsultaBD {
         return todasC;
     }
      
+    public boolean modificarConsulta(Consultas consu, Connection conn){
+        
+        String sql = "UPDATE public.consultas SET "
+                + "id_paci="+consu.getId_paci()+", "
+                + "id_emp="+consu.getId_emp()+", "
+                + "id_tipo_consul="+consu.getId_tipo_consul()+", "
+                + "fecha='"+consu.getFecha()+"', "
+                + "hora='"+consu.getHora()+"', "
+                + "total="+consu.getTotal()+", "
+                + "estado='"+consu.getEstadoChar()+"', "
+                + "diagnostico='"+consu.getDiagnostico()+"' "
+                + "WHERE id_consul="+consu.getId_consul()+";";
+        try 
+        {
+            Statement stm= conn.createStatement();
+            stm.executeUpdate(sql);
+            return true;
+            
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            return false;
+        }
+    }
 }

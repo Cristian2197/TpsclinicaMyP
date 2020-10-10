@@ -217,12 +217,15 @@ public class pnlMedicina extends javax.swing.JPanel {
 
         txtNombre.setForeground(new java.awt.Color(51, 109, 136));
         txtNombre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtNombre.setPlaceholder("Nombre de medicina...");
 
         txtPrecioCompra.setForeground(new java.awt.Color(51, 109, 136));
         txtPrecioCompra.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtPrecioCompra.setPlaceholder("Precio de compra de medicina...");
 
         txtPrecioVenta.setForeground(new java.awt.Color(51, 109, 136));
         txtPrecioVenta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtPrecioVenta.setPlaceholder("Precio de venta de medicina...");
 
         spnCantidad.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
@@ -322,6 +325,7 @@ public class pnlMedicina extends javax.swing.JPanel {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         txtFiltroNombre.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtFiltroNombre.setPlaceholder("Filtrar por nombre...");
         txtFiltroNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroNombreActionPerformed(evt);

@@ -584,7 +584,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_sieteMousePressed
 
     private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.Recetas());
+        new CambiaPanel(pnlPrincipal, new paneles.Recetas(this.conn, null));
         if(this.siete.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));
             this.uno.setColorHover(new Color(49,143,181));
@@ -744,7 +744,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresActionPerformed
         try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlConsulta(this.conn, this.emp));
+            new CambiaPanel(pnlPrincipal, new paneles.pnlConsulta(this.conn, this.emp, pnlPrincipal));
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
