@@ -36,6 +36,7 @@ public class MedicinaBD {
                     medV.setPresentacion(rs.getDouble("presentacion"));
                     medV.setNombre_pres(rs.getString("nombre_pres"));
                     medV.setId_pres(rs.getInt("id_pres"));
+                    medV.setMinimo(rs.getDouble("minimo"));
                     medV.setErrorSql("OK");
                     medVLista.add(medV);
                 }
@@ -50,14 +51,15 @@ public class MedicinaBD {
     }  
     
     public void InsertarMedicina(Connection conn, Medicina med){
-        String sql="INSERT INTO public.medicina (nombre, presentacion, id_pres, precio_compra, precio_venta, stock) \n" +
+        String sql="INSERT INTO public.medicina (nombre, presentacion, id_pres, precio_compra, precio_venta, stock, minimo)" +
         "VALUES('"
         +med.getNombre()+"',"
         +med.getPresentacion()+","
         +med.getId_pres()+","
         +med.getPrecio_compra()+","
         +med.getPrecio_venta()+","
-        +med.getStock()+");";
+        +med.getStock()+","
+        +med.getMinimo()+");";
         try 
         {
             Statement stm= conn.createStatement();
@@ -75,7 +77,8 @@ public class MedicinaBD {
                 +"id_pres="+med.getId_pres()+","
                 +"precio_compra="+med.getPrecio_compra()+","
                 +"precio_venta="+med.getPrecio_venta()+","
-                +"stock="+med.getStock()+""
+                +"stock="+med.getStock()+","
+                +"minimo="+med.getMinimo()+""
                 +"WHERE id_med="+med.getId_med()+";";
          try 
         {

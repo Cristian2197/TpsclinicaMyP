@@ -14,12 +14,18 @@ public class MedicinaVista {
     private double presentacion;
     private String nombre_pres;
     private int id_pres;
+    private double minimo;
     
     private String errorSql;
+
 
     // <editor-fold defaultstate="collapsed" desc="Getters"> 
     public int getId_med() {
         return id_med;
+    }
+    
+    public double getMinimo() {
+        return minimo;
     }
 
     public int getId_pres() {
@@ -66,6 +72,9 @@ public class MedicinaVista {
         this.id_med = id_med;
     }
 
+    public void setMinimo(double minimo) {
+        this.minimo = minimo;
+    }
     public void setId_pres(int id_pres) {
         this.id_pres = id_pres;
     }

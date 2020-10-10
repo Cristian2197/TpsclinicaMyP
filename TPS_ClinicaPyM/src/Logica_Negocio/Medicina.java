@@ -16,13 +16,20 @@ public class Medicina {
     private double precio_compra;
     private double precio_venta;
     private double stock;
-    
+    private double minimo;
+
     private String errorSql;
+
+    
 
     // <editor-fold defaultstate="collapsed" desc="Getters"> 
     public int getId_med() {
         return id_med;
     }
+    
+    public double getMinimo() {
+        return minimo;
+    }    
 
     public String getNombre() {
         return nombre;
@@ -57,6 +64,10 @@ public class Medicina {
 
     public void setId_med(int id_med) {
         this.id_med = id_med;
+    }
+    
+    public void setMinimo(double minimo) {
+        this.minimo = minimo;
     }
 
     public void setNombre(String nombre) {

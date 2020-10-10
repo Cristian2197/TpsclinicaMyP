@@ -75,6 +75,8 @@ public class pnlMedicina extends javax.swing.JPanel {
         txtIdMedicina = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         cmbPresentacion = new rojerusan.RSComboMetro();
+        spnMinimo = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         txtFiltroNombre = new rojeru_san.RSMTextFull();
         jLabel3 = new javax.swing.JLabel();
@@ -254,6 +256,12 @@ public class pnlMedicina extends javax.swing.JPanel {
         cmbPresentacion.setColorSeleccion(new java.awt.Color(51, 109, 136));
         cmbPresentacion.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
+        spnMinimo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Mínimo:");
+        jLabel7.setName(""); // NOI18N
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -274,17 +282,19 @@ public class pnlMedicina extends javax.swing.JPanel {
                                     .addComponent(lblPresentacion))
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
-                                    .addComponent(lblPrecioVenta)))
+                                    .addComponent(lblPrecioVenta)
+                                    .addComponent(jLabel7)))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPrecioCompra))
-                        .addGap(62, 62, 62)
+                        .addGap(56, 56, 56)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdMedicina, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spnMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -314,7 +324,11 @@ public class pnlMedicina extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -393,7 +407,7 @@ public class pnlMedicina extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PUESTOLayout = new javax.swing.GroupLayout(PUESTO);
@@ -411,10 +425,10 @@ public class pnlMedicina extends javax.swing.JPanel {
             PUESTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PUESTOLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(PUESTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGroup(PUESTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("INGRESAR", PUESTO);
@@ -575,6 +589,7 @@ public class pnlMedicina extends javax.swing.JPanel {
         med.setId_pres(this.IdPresentacion());
         med.setPresentacion(Double.valueOf(this.spnCantidad.getValue().toString()));
         med.setStock(Double.valueOf(this.spnCantidad.getValue().toString()));
+        med.setMinimo(Double.valueOf(this.spnMinimo.getValue().toString()));
         this.medL.PostMedicina(conn, med);
     }
     
@@ -615,6 +630,7 @@ public class pnlMedicina extends javax.swing.JPanel {
         med.setPresentacion(Double.valueOf(this.spnCantidad.getValue().toString()));
         double stock = med.getPresentacion() + this.medAct.getCantidad();
         med.setStock(stock);
+        med.setMinimo(Double.valueOf(this.spnMinimo.getValue().toString()));
         this.medL.UpdateMedicina(conn, med);
     }
     
@@ -629,6 +645,7 @@ public class pnlMedicina extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -642,6 +659,7 @@ public class pnlMedicina extends javax.swing.JPanel {
     private javax.swing.JLabel lblPresentacion;
     private rojeru_san.RSMTextFull rSMTextFull6;
     private javax.swing.JSpinner spnCantidad;
+    private javax.swing.JSpinner spnMinimo;
     private rojeru_san.complementos.RSTableMetro tblInventarioMedicina1;
     private rojeru_san.complementos.RSTableMetro tblMedicina;
     private rojeru_san.RSMTextFull txtFiltroNombre;

@@ -735,7 +735,9 @@ public class pnlConsulta extends javax.swing.JPanel {
                 this.conView = this.cv.getAllConsultas(conn);
                 this.LlenarTabla(this.conView);
                 this.VaciarCamposModificar();
-                this.CambiaRecetas();
+               
+                this.CambiaRecetas(consulta);
+                
                 this.setVisible(false);
                 
             } catch (SQLException ex) {
@@ -743,8 +745,9 @@ public class pnlConsulta extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_rSButton5ActionPerformed
-    private void CambiaRecetas(){
-        new CambiaPanel(this.pnlPrincipal, new Recetas(this.conn, this.conv));
+    
+   private void CambiaRecetas(Consultas cons){
+        new CambiaPanel(this.pnlPrincipal, new Recetas(this.conn, this.conv, cons, this.pnlPrincipal, this.empleado));
     }
     
     public void VaciarCamposModificar(){
