@@ -418,7 +418,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.pnlMedicina());
+        new CambiaPanel(pnlPrincipal, new paneles.pnlMedicina(this.conn, this.emp));
 
         if(this.cuatro.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));

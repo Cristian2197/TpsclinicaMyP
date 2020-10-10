@@ -673,7 +673,7 @@ public class pnlConsulta extends javax.swing.JPanel {
     }
         
     private void rSButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButton5ActionPerformed
-        pnlMedicina llamada = new pnlMedicina ();
+        pnlMedicina llamada = new pnlMedicina (this.conn, this.empleado);
         llamada.setVisible(true);
     }//GEN-LAST:event_rSButton5ActionPerformed
 

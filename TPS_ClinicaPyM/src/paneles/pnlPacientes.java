@@ -388,6 +388,7 @@ public class pnlPacientes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tblPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPacientesMouseClicked
+        ArrayList<Paciente> paciL = new ArrayList<>();
         int index = this.tblPacientes.getSelectedRow();
         if(this.tblPacientes.getRowCount() == this.pacientes.size()){
             Paciente paciente = this.pacientes.get(index);
@@ -396,19 +397,17 @@ public class pnlPacientes extends javax.swing.JPanel {
             String texto = this.txtNombreFiltro.getText();
             for (int i = 0; i < this.pacientes.size(); i++) {
                 Paciente c = this.pacientes.get(i);
-                int idexof = c.getNombreCompleto().indexOf(texto);
                 if( c.getNombreCompleto().toLowerCase().indexOf(texto.toLowerCase()) >= 0){
-                    this.LlenarCampos(c);
+                    paciL.add(c);
                 }
             }
+            this.LlenarCampos(paciL.get(index));
         }
     }//GEN-LAST:event_tblPacientesMouseClicked
     
     TableRowSorter trs;
-    RowSorter rowsort;
-    ArrayList<String> Nombres;
     private void txtNombreFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreFiltroKeyTyped
-         txtNombreFiltro.addKeyListener(new KeyAdapter() {
+        txtNombreFiltro.addKeyListener(new KeyAdapter() {
             
             @Override
             public void keyReleased(KeyEvent ke) {
@@ -418,7 +417,6 @@ public class pnlPacientes extends javax.swing.JPanel {
         });
         trs = new TableRowSorter(this.model);
         this.tblPacientes.setRowSorter(trs);
-        rowsort = this.tblPacientes.getRowSorter();
     }//GEN-LAST:event_txtNombreFiltroKeyTyped
     
     public void LlenarCampos(Paciente paci){
