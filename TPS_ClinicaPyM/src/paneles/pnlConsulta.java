@@ -814,7 +814,7 @@ public class pnlConsulta extends javax.swing.JPanel {
             Paciente paciente = this.pacientes.get(indexPac-1);
             TipoConsulta tipo = this.tipoLst.get(indexTipo-1);
             Consultas consulta = new Consultas();
-            consulta.setDiagnostico("NaN");
+            consulta.setDiagnostico("Pendiente");
             consulta.setFecha(fecha);
             consulta.setTotal(total);
             consulta.setHora(Time.valueOf(hora + ":00"));

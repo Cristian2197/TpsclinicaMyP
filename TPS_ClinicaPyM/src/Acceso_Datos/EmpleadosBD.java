@@ -3,10 +3,13 @@ package Acceso_Datos;
 
 import java.sql.Connection;
 import Logica_Negocio.Empleados;
+import static java.security.spec.MGF1ParameterSpec.SHA1;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class EmpleadosBD {
    
@@ -73,4 +76,67 @@ public class EmpleadosBD {
         }
         return empleados;
     }
-}
+    
+    public int InsertarEmpleado(Connection conn, Empleados emp){
+        String pass = DigestUtils.md5Hex(emp.getContraseña());
+        int id = 0;
+        String sql="INSERT INTO public.empleados "
+                + "(id_puesto, nombre, apellido, telefono, dui, fecha_nacimiento, contraseña, usuario) "
+                + "VALUES("+emp.getId_puesto()+", '"
+                + emp.getNombre()+"', '"
+                + emp.getApellido()+"', '"
+                + emp.getTelefono()+"', '"
+                + emp.getDui()+"', '"
+                + emp.getFechaNacimiento()+"', '"
+                + pass+"', '"
+                + emp.getUsuario()+"');";
+        try 
+        {
+            Statement stm= conn.createStatement();
+            stm.executeUpdate(sql);
+            ResultSet rs= stm.executeQuery(
+                    "select max(e.id_emp) as ultimo from empleados e ");
+            rs.next();
+            id = rs.getInt("ultimo");
+            
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return id;
+    }
+    
+    public void ModificarEmpleado(Connection conn, Empleados emp){
+        int id = 0;
+        String sql="UPDATE public.empleados "
+                + "SET "
+                + "id_puesto="+emp.getId_puesto()+", "
+                + "nombre='"+emp.getNombre()+"', "
+                + "apellido='"+emp.getApellido()+"', "
+                + "telefono='"+emp.getTelefono()+"', "
+                + "dui='"+emp.getDui()+"', "
+                + "fecha_nacimiento='"+emp.getFechaNacimiento()+"', "
+                + "contraseña='"+emp.getContraseña()+"', "
+                + "usuario='"+emp.getUsuario()+"' "
+                + "WHERE id_emp="+emp.getId_emp()+";";
+        try 
+        {
+            Statement stm= conn.createStatement();
+            stm.executeUpdate(sql);
+            
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+    
+    public void EliminarEmpleado(Connection conn, int id){
+        String sql="DELETE FROM public.empleados WHERE id_emp="+id+";";
+        try 
+        {
+            Statement stm= conn.createStatement();
+            stm.executeUpdate(sql);
+            
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+    }
+}   

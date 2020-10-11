@@ -126,4 +126,19 @@ public class Empleados {
         EmpleadosBD empleado = new EmpleadosBD();
         return empleado.getEmpleadosXEspe(conn, especialidad);
     }
+    
+    public int InsertarEmpleado(Connection conn){
+        EmpleadosBD empleado = new EmpleadosBD();
+        return empleado.InsertarEmpleado(conn, this);
+    }
+    
+    public void ModificarEmpleado(Connection conn){
+        EmpleadosBD empleado = new EmpleadosBD();
+        empleado.ModificarEmpleado(conn, this);
+    }
+    
+    public void EliminarEmpleados(Connection conn, int id){
+        EmpleadosBD empleado = new EmpleadosBD();
+        empleado.EliminarEmpleado(conn, id);
+    }
 }
