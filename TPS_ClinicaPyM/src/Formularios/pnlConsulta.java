@@ -1,7 +1,7 @@
 
-package paneles;
+package Formularios;
 
-import paneles.CambiaPanel;
+import Formularios.CambiaPanel;
 import Logica_Negocio.ConsultaVista;
 import Logica_Negocio.Consultas;
 import java.sql.Connection;

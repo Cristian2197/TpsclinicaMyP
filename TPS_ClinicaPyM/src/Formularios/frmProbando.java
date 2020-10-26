@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package Formularios;
 
 /**
  *
- * @author linke
+ * @author melyi
  */
 public class frmProbando extends javax.swing.JFrame {
 

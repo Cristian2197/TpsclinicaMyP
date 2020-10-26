@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package Formularios;
 
 import Logica_Negocio.ConsultaVista;
 import Logica_Negocio.Consultas;
@@ -13,7 +13,7 @@ import Logica_Negocio.Empleados;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import principal.TextPrompt;
+import Formularios.TextPrompt;
 import Logica_Negocio.Receta;
 import Logica_Negocio.Receta_Detalle;
 import java.awt.Color;
@@ -519,7 +519,7 @@ public class Recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardar3ActionPerformed
     
     public void CambiaPanel() throws SQLException{
-         new CambiaPanel(this.pnlMain, new paneles.pnlHome(this.conn, this.emp));
+         new CambiaPanel(this.pnlMain, new Formularios.pnlHome(this.conn, this.emp));
          
     }
     public void LlenarLista(){

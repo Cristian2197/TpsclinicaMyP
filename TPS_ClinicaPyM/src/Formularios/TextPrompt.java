@@ -1,4 +1,4 @@
-package principal;
+package Formularios;
 
 
 import com.toedter.calendar.JDateChooser;

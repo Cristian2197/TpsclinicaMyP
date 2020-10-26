@@ -1,5 +1,5 @@
 
-package paneles;
+package Formularios;
 
 import Logica_Negocio.Especialidad;
 import Logica_Negocio.Empleados;

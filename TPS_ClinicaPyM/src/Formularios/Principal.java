@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package principal;
+package Formularios;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,12 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import paneles.CambiaPanel;
 import java.sql.Connection;
 import Acceso_Datos.Conexion;
 import Logica_Negocio.Empleados;
 import java.sql.SQLException;
-import paneles.pnlHome;
 /**
  *
  * @author RojeruSan
@@ -29,6 +27,7 @@ public class Principal extends javax.swing.JFrame {
     Connection conn;
     Conexion conect;
     Empleados emp;
+    private Object Formularios;
     public Principal() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -270,7 +269,7 @@ public class Principal extends javax.swing.JFrame {
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnlMenuLayout.createSequentialGroup()
                 .addGroup(pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMenuLayout.createSequentialGroup()
@@ -345,7 +344,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1028, Short.MAX_VALUE))
+                .addContainerGap(1481, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,13 +377,13 @@ public class Principal extends javax.swing.JFrame {
         pnlCentro.setLayout(pnlCentroLayout);
         pnlCentroLayout.setHorizontalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
+            .addGroup(pnlCentroLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlCentroLayout.setVerticalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCentroLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -421,7 +420,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void cuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuatroActionPerformed
-        new CambiaPanel(pnlPrincipal, new paneles.pnlMedicina(this.conn, this.emp));
+        new CambiaPanel(pnlPrincipal, new Formularios.pnlMedicina(this.conn, this.emp));
 
         if(this.cuatro.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));
@@ -479,8 +478,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_cuatroMouseClicked
 
     private void seisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisActionPerformed
-        //   new CambiaPanel(pnlPrincipal, new paneles.pnlAndroid());
-        if(this.seis.isSelected()){
+        
+        
+            new CambiaPanel(pnlPrincipal, new Formularios.frmPerfil());
+       
+        if(this.cuatro.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));
             this.uno.setColorHover(new Color(49,143,181));
             this.uno.setColorPressed(new Color(29,9,33));
@@ -493,7 +495,7 @@ public class Principal extends javax.swing.JFrame {
             this.tres.setColorHover(new Color(49,143,181));
             this.tres.setColorPressed(new Color(29,9,33));
 
-            this.cuatro.setColorNormal(new Color(51,109,136));
+            this.cuatro.setColorNormal(new Color(49,143,181));
             this.cuatro.setColorHover(new Color(49,143,181));
             this.cuatro.setColorPressed(new Color(29,9,33));
 
@@ -501,7 +503,7 @@ public class Principal extends javax.swing.JFrame {
             this.cinco.setColorHover(new Color(49,143,181));
             this.cinco.setColorPressed(new Color(29,9,33));
 
-            this.seis.setColorNormal(new Color(49,143,181));
+            this.seis.setColorNormal(new Color(51,109,136));
             this.seis.setColorHover(new Color(49,143,181));
             this.seis.setColorPressed(new Color(29,9,33));
 
@@ -513,9 +515,9 @@ public class Principal extends javax.swing.JFrame {
             this.ocho.setColorHover(new Color(49,143,181));
             this.ocho.setColorPressed(new Color(29,9,33));
         }else{
-            this.seis.setColorNormal(new Color(51,109,136));
-            this.seis.setColorHover(new Color(49,143,181));
-            this.seis.setColorPressed(new Color(29,9,33));
+            this.cuatro.setColorNormal(new Color(51,109,136));
+            this.cuatro.setColorHover(new Color(49,143,181));
+            this.cuatro.setColorPressed(new Color(29,9,33));
         }
     }//GEN-LAST:event_seisActionPerformed
 
@@ -532,7 +534,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void sieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sieteActionPerformed
         try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlBackup(this.conect));
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlBackup(this.conect));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -587,7 +589,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void cincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cincoActionPerformed
         try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlDoctores(this.conn, this.emp));
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlDoctores(this.conn, this.emp));
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -643,7 +645,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void dosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosActionPerformed
         if(this.emp.getId_puesto() != 1){
-            new CambiaPanel(pnlPrincipal, new paneles.pnlPacientes(this.conn, this.emp));
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlPacientes(this.conn, this.emp));
             if(this.dos.isSelected()){
                 this.dos.setColorNormal(new Color(49,143,181));
                 this.dos.setColorHover(new Color(49,143,181));
@@ -698,7 +700,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void tresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresActionPerformed
         try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlConsulta(this.conn, this.emp, pnlPrincipal));
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlConsulta(this.conn, this.emp, pnlPrincipal));
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -754,7 +756,7 @@ public class Principal extends javax.swing.JFrame {
     
     private void unoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unoActionPerformed
         try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlHome(this.conn, this.emp));
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlHome(this.conn, this.emp));
         } catch (SQLException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -820,11 +822,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ochoMousePressed
 
     private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
-        try {
-            new CambiaPanel(pnlPrincipal, new paneles.pnlHome(this.conn, this.emp));
-        } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+            new CambiaPanel(pnlPrincipal, new Formularios.pnlExpediente());
+        
         if(this.uno.isSelected()){
             this.uno.setColorNormal(new Color(49,143,181));
             this.uno.setColorHover(new Color(49,143,181));

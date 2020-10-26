@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package Formularios;
 
 import Logica_Negocio.Empleados;
 import Logica_Negocio.Consultas;

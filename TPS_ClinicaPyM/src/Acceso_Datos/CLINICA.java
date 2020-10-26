@@ -7,7 +7,7 @@ package Acceso_Datos;
 
 
 import java.sql.Connection;
-import paneles.frmEntrada1;
+import Formularios.frmEntrada1;
 
 /**
  *

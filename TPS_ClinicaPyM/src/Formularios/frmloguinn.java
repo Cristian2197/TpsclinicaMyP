@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package Formularios;
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -21,7 +21,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.sql.Connection;
 import Logica_Negocio.Empleados;
-import principal.Principal;
+import Formularios.Principal;
 import org.apache.commons.codec.digest.DigestUtils;
 import Acceso_Datos.Conexion;
 import java.sql.SQLException;

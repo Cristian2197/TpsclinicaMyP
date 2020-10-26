@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package Formularios;
 
 import Logica_Negocio.Empleados;
 import Logica_Negocio.Medicina;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import principal.TextPrompt;
+import Formularios.TextPrompt;
 
 
 public class pnlMedicina extends javax.swing.JPanel {
