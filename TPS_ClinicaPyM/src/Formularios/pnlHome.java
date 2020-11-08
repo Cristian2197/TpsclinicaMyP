@@ -87,8 +87,8 @@ public class pnlHome extends javax.swing.JPanel {
         ArrayList<ConsultaVista> Todasconsultas = new ArrayList<>();
         int semanaActual = this.ObtenerSemanaAño(this.hoy);
         int diaHoy = this.ObtenerDiaSemana(this.hoy);
-        
-        for (int i = 0; i < this.consultas.size(); i++) {
+        if(this.consultas != null){
+            for (int i = 0; i < this.consultas.size(); i++) {
             ConsultaVista current = consultas.get(i);
             Date FechaCu = current.getFecha();
             if(this.ObtenerSemanaAño(FechaCu) == semanaActual
@@ -102,6 +102,8 @@ public class pnlHome extends javax.swing.JPanel {
             }
         }
         this.LlenarTabla(Todasconsultas);
+        }
+        
     }
     
     

@@ -98,6 +98,7 @@ public class EmpleadosBD {
                     "select max(e.id_emp) as ultimo from empleados e ");
             rs.next();
             id = rs.getInt("ultimo");
+            JOptionPane.showMessageDialog(null, "EMpleado creado");
             
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
@@ -122,6 +123,7 @@ public class EmpleadosBD {
         {
             Statement stm= conn.createStatement();
             stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Usuario Modificado");
             
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
@@ -134,6 +136,7 @@ public class EmpleadosBD {
         {
             Statement stm= conn.createStatement();
             stm.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null, "Usuario Eliminado");
             
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());

@@ -182,13 +182,13 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtID5" min="-2" pref="303" max="-2" attributes="0"/>
+                                      <Component id="txtFechaNac" min="-2" pref="303" max="-2" attributes="0"/>
                                       <Component id="txtApellido" min="-2" pref="303" max="-2" attributes="0"/>
                                       <Component id="txtNombre" min="-2" pref="303" max="-2" attributes="0"/>
                                       <Component id="txtID" min="-2" pref="303" max="-2" attributes="0"/>
                                       <Component id="txtDUI" min="-2" pref="303" max="-2" attributes="0"/>
                                       <Component id="txtTelefono" min="-2" pref="303" max="-2" attributes="0"/>
-                                      <Component id="txtID6" min="-2" pref="303" max="-2" attributes="0"/>
+                                      <Component id="txtPuesto" min="-2" pref="303" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -228,12 +228,12 @@
                           </Group>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtID5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblFechaNac" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtID6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPuesto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblPuesto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -251,6 +251,9 @@
                   </Properties>
                 </Component>
                 <Component class="app.bolivia.swing.JCTextField" name="txtID">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
@@ -269,6 +272,9 @@
                   </Properties>
                 </Component>
                 <Component class="app.bolivia.swing.JCTextField" name="txtNombre">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblApellido">
                   <Properties>
@@ -279,6 +285,9 @@
                   </Properties>
                 </Component>
                 <Component class="app.bolivia.swing.JCTextField" name="txtApellido">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblDUI">
                   <Properties>
@@ -289,6 +298,9 @@
                   </Properties>
                 </Component>
                 <Component class="app.bolivia.swing.JCTextField" name="txtDUI">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTelefono">
                   <Properties>
@@ -299,6 +311,9 @@
                   </Properties>
                 </Component>
                 <Component class="app.bolivia.swing.JCTextField" name="txtTelefono">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblFechaNac">
                   <Properties>
@@ -308,9 +323,15 @@
                     <Property name="text" type="java.lang.String" value="Fecha Nacimiento:"/>
                   </Properties>
                 </Component>
-                <Component class="app.bolivia.swing.JCTextField" name="txtID5">
+                <Component class="app.bolivia.swing.JCTextField" name="txtFechaNac">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
-                <Component class="app.bolivia.swing.JCTextField" name="txtID6">
+                <Component class="app.bolivia.swing.JCTextField" name="txtPuesto">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPuesto">
                   <Properties>
@@ -350,8 +371,8 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="rSButtonRoundEffect1" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtID7" pref="303" max="32767" attributes="0"/>
-                                  <Component id="rSPass1" max="32767" attributes="0"/>
+                                  <Component id="txtUsuario" pref="303" max="32767" attributes="0"/>
+                                  <Component id="txtPassword" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -367,13 +388,13 @@
                           <Component id="rSPanelImage1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtID7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblContraseña" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rSPass1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="51" max="32767" attributes="0"/>
                           <Component id="rSButtonRoundEffect1" min="-2" max="-2" attributes="0"/>
@@ -399,7 +420,7 @@
                     <Property name="text" type="java.lang.String" value="Usuario:"/>
                   </Properties>
                 </Component>
-                <Component class="app.bolivia.swing.JCTextField" name="txtID7">
+                <Component class="app.bolivia.swing.JCTextField" name="txtUsuario">
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblContrase&#xf1;a">
                   <Properties>
@@ -429,10 +450,7 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
-                <Component class="rojeru_san.rsfield.RSPass" name="rSPass1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="rSPass1"/>
-                  </Properties>
+                <Component class="rojeru_san.rsfield.RSPass" name="txtPassword">
                 </Component>
                 <Component class="rojeru_san.rsbutton.RSButtonRoundEffect" name="rSButtonRoundEffect1">
                   <Properties>
@@ -447,6 +465,9 @@
                       <Font name="Arial" size="14" style="1"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rSButtonRoundEffect1ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -516,7 +537,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtNombreFiltro" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>

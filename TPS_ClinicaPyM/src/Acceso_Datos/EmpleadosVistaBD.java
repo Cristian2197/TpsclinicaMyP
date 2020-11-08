@@ -44,4 +44,34 @@ public class EmpleadosVistaBD {
         } 
         return empledosList;
     }
+    
+    public EmpleadosVista GetEmpleadoxId(Connection conn, int id) throws SQLException{
+        EmpleadosVista empledo = new EmpleadosVista();
+       
+        Statement stm = conn.createStatement();
+        ResultSet rs = stm.executeQuery(
+            "SELECT * FROM public.empleadosvista WHERE id_emp="+id+";"
+        );
+        if(rs != null){
+            while(rs.next()){
+                
+                empledo.setId_emp(rs.getInt("id_emp"));
+                empledo.setId_puesto(rs.getInt("id_puesto"));
+                empledo.setNombre(rs.getString("nombre"));
+                empledo.setDui(rs.getString("dui"));
+                empledo.setTelefono(rs.getString("telefono"));
+                empledo.setUsuario(rs.getString("usuario"));
+                empledo.setPuesto(rs.getString("puesto"));
+                empledo.setFecha_nacimiento(rs.getDate("fecha_nacimiento"));
+                empledo.setNombreuno(rs.getString("nombreuno"));
+                empledo.setApellido(rs.getString("apellido"));
+                empledo.setId_especialidad(rs.getInt("id_especialidad"));
+                empledo.setContraseña(rs.getString("contraseña"));
+                empledo.setId_espe(rs.getInt("id_espe"));
+                empledo.setErrorSql("OK");
+        }
+            
+        } 
+        return empledo;
+    }
 }

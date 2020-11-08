@@ -147,4 +147,8 @@ public class EmpleadosVista {
         EmpleadosVistaBD empBD = new EmpleadosVistaBD();
         return empBD.GetEmpleado(conn);
     }
+    public EmpleadosVista getEmpleadoxId(Connection conn, int id) throws SQLException{
+        EmpleadosVistaBD empBD = new EmpleadosVistaBD();
+        return empBD.GetEmpleadoxId(conn, id);
+    }
 }

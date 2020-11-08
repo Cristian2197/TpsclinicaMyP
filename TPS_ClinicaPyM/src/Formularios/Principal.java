@@ -16,7 +16,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 import java.sql.Connection;
 import Acceso_Datos.Conexion;
 import Logica_Negocio.Empleados;
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.function.Consumer;
+import javax.swing.JOptionPane;
+import org.eclipse.jdt.internal.compiler.batch.Main;
 /**
  *
  * @author RojeruSan
@@ -61,6 +69,7 @@ public class Principal extends javax.swing.JFrame {
         cuatro = new rsbuttom.RSButtonMetro();
         jLabel3 = new javax.swing.JLabel();
         ocho = new rsbuttom.RSButtonMetro();
+        btnPowerOff = new rsbuttom.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         pnlCentro = new javax.swing.JPanel();
@@ -263,6 +272,25 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btnPowerOff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/power_off.png"))); // NOI18N
+        btnPowerOff.setText("Cerrar Sesión");
+        btnPowerOff.setColorHover(new java.awt.Color(49, 143, 181));
+        btnPowerOff.setColorNormal(new java.awt.Color(51, 109, 136));
+        btnPowerOff.setColorPressed(new java.awt.Color(29, 9, 33));
+        btnPowerOff.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPowerOff.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnPowerOff.setIconTextGap(19);
+        btnPowerOff.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnPowerOffMousePressed(evt);
+            }
+        });
+        btnPowerOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPowerOffActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
@@ -284,7 +312,8 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(cuatro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cinco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(ocho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ocho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPowerOff, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlMenuLayout.setVerticalGroup(
@@ -307,6 +336,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(seis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(siete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPowerOff, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -480,7 +511,11 @@ public class Principal extends javax.swing.JFrame {
     private void seisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seisActionPerformed
         
         
-            new CambiaPanel(pnlPrincipal, new Formularios.frmPerfil());
+        try {
+            new CambiaPanel(pnlPrincipal, new Formularios.frmPerfil(this.emp, this.conn));
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
         if(this.cuatro.isSelected()){
             this.uno.setColorNormal(new Color(51,109,136));
@@ -823,7 +858,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void ochoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ochoActionPerformed
         
-            new CambiaPanel(pnlPrincipal, new Formularios.pnlExpediente());
+        new CambiaPanel(pnlPrincipal, new Formularios.pnlExpediente(this.emp, this.conn));
         
         if(this.uno.isSelected()){
             this.uno.setColorNormal(new Color(49,143,181));
@@ -863,6 +898,28 @@ public class Principal extends javax.swing.JFrame {
             this.uno.setColorPressed(new Color(29,9,33));
         }
     }//GEN-LAST:event_ochoActionPerformed
+
+
+    private void btnPowerOffMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPowerOffMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPowerOffMousePressed
+
+    private void btnPowerOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPowerOffActionPerformed
+        try {
+            this.conn.close();
+            Conexion con = new Conexion(0);
+            Connection conexion = con.getConexion();
+            frmloguinn objeto = new frmloguinn();
+            objeto.SetConexion(conexion);
+            objeto.setVisible(true);
+            this.dispose();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnPowerOffActionPerformed
 
     /**
      * @param args the command line arguments
@@ -905,6 +962,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rsbuttom.RSButtonMetro btnPowerOff;
     private rsbuttom.RSButtonMetro cinco;
     private rsbuttom.RSButtonMetro cuatro;
     private rsbuttom.RSButtonMetro dos;

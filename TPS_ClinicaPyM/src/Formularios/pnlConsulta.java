@@ -706,7 +706,7 @@ public class pnlConsulta extends javax.swing.JPanel {
         Consultas consulta = new Consultas();
         String estado;
         if(this.txtDiagnostico.getText().length() > 0){
-            estado = "S";
+            estado = "R";
             consulta.setDiagnostico(this.txtDiagnostico.getText());
         }else{
             estado = "P";
