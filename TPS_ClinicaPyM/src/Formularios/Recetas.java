@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 /**
  *
@@ -476,19 +477,31 @@ public class Recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardar1ActionPerformed
     
     private void btnGuardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar2ActionPerformed
-        if(this.consult != null){
-            Receta rec = new Receta();
-            rec.setId_consul(this.consult.getId_consulta());
-            int id = rec.CrearReceta(conn, rec);
+        if(this.txtNombrePaci.getText().isEmpty() && 
+           Integer.valueOf(this.spnIdConsulta.getValue().toString()) == 0 &&
+           Double.valueOf(this.spnIntervalo.getValue().toString()) == 0 &&
+           Double.valueOf(this.spnTotal.getValue().toString()) == 0 &&
+           Double.valueOf(this.spnUnidades.getValue().toString()) == 0 &&
+           this.dcFechaN.getDate() == null &&
+           this.cmdMedicina.getSelectedIndex() == 0){
             
-            for (int i = 0; i < this.reDeSav.size(); i++) {
-                Receta_Detalle get = this.reDeSav.get(i);
-                get.setId_rece(id);
-                get.InsertarRecetaDet(conn, get);
+            JOptionPane.showMessageDialog(null, "Debe completar los campos para guardar su receta");
+            
+        }else{
+            if(this.consult != null){
+                Receta rec = new Receta();
+                rec.setId_consul(this.consult.getId_consulta());
+                int id = rec.CrearReceta(conn, rec);
+
+                for (int i = 0; i < this.reDeSav.size(); i++) {
+                    Receta_Detalle get = this.reDeSav.get(i);
+                    get.setId_rece(id);
+                    get.InsertarRecetaDet(conn, get);
+                }
+                this.con.setTotal(this.total);
+                this.con.UpdateConsulta(con, conn);
+                this.Limpiar();
             }
-            this.con.setTotal(this.total);
-            this.con.UpdateConsulta(con, conn);
-            this.Limpiar();
         }
     }//GEN-LAST:event_btnGuardar2ActionPerformed
 

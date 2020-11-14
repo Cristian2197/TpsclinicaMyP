@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
@@ -380,9 +381,30 @@ public class pnlPacientes extends javax.swing.JPanel {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(this.txtIdPaciente.getText().isEmpty()){
-            this.GuardarPaciente();
+            if(this.txtNombre.getText().isEmpty() &&
+               this.txtApellido.getText().isEmpty() &&
+               this.txtDUI.getText().isEmpty() &&
+               this.txtDireccion.getText().isEmpty() &&
+               this.txtTelefono.getText().isEmpty() &&
+               this.dcFechaNac.getDate() == null){
+                
+                JOptionPane.showMessageDialog(null, "Faltan datos importantes");
+            }else{
+                this.GuardarPaciente();
+            }
         }else{
-            this.ActualizarPaciente();
+            if(this.txtNombre.getText().isEmpty() &&
+               this.txtApellido.getText().isEmpty() &&
+               this.txtDUI.getText().isEmpty() &&
+               this.txtDireccion.getText().isEmpty() &&
+               this.txtTelefono.getText().isEmpty() &&
+               this.dcFechaNac.getDate() == null){
+                
+                JOptionPane.showMessageDialog(null, "Faltan datos importantes");
+            }else{
+                
+                this.ActualizarPaciente();
+            }
         }
         
     }//GEN-LAST:event_btnGuardarActionPerformed

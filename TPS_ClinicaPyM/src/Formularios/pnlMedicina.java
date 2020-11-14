@@ -524,9 +524,26 @@ public class pnlMedicina extends javax.swing.JPanel {
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
         Medicina med = new Medicina();
         if(this.txtIdMedicina.getText().isEmpty()){
-            this.GuardarMedicina(med);
+            if(Double.valueOf(this.spnCantidad.getValue().toString()) == 0 &&
+               this.txtNombre.getText().isEmpty() &&
+               this.cmbPresentacion.getSelectedIndex() == 0 &&
+               this.txtPrecioCompra.getText().isEmpty() &&
+               this.txtPrecioVenta.getText().isEmpty() ){
+                
+                this.GuardarMedicina(med);
+            }
         }else{
-            this.ActualizarMedicina(med);
+            if(Double.valueOf(this.spnCantidad.getValue().toString()) == 0 &&
+               this.txtNombre.getText().isEmpty() &&
+               this.cmbPresentacion.getSelectedIndex() == 0 &&
+               this.txtPrecioCompra.getText().isEmpty() &&
+               this.txtPrecioVenta.getText().isEmpty() ){
+                
+                JOptionPane.showMessageDialog(null, "Asegurese que todos los datos esten ingresados");
+                
+            }else{
+                this.ActualizarMedicina(med);
+            }
         }
         this.Limpiar();
         this.LlenarTablaMedicinaInv();

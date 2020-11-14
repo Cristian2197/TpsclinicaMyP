@@ -5,6 +5,7 @@ import Logica_Negocio.Empleados;
 import Logica_Negocio.EmpleadosVista;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 
 
@@ -445,7 +446,11 @@ public class frmPerfil extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombreFiltroKeyTyped
 
     private void rSButtonRoundEffect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRoundEffect1ActionPerformed
-        this.ActualizarDatos();
+        if(this.txtUsuario.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo de nombre de usuario debe ir lleno para poder actualizar su usuario");
+        }else{
+            this.ActualizarDatos();
+        }
     }//GEN-LAST:event_rSButtonRoundEffect1ActionPerformed
 
 

@@ -584,6 +584,11 @@ public class pnlConsulta extends javax.swing.JPanel {
         cmbConsultaTipo.setColorFondo(new java.awt.Color(51, 109, 136));
         cmbConsultaTipo.setColorSeleccion(new java.awt.Color(51, 109, 136));
         cmbConsultaTipo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cmbConsultaTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbConsultaTipoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmbConsultaTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 170, 40));
 
         txtDiagnostico.setColumns(20);
@@ -700,50 +705,58 @@ public class pnlConsulta extends javax.swing.JPanel {
     }
         
     private void rSButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButton5ActionPerformed
-        int indexDoc = this.cmbDoctoresDisp.getSelectedIndex();
-        int indexTipo = this.cmbConsultaTipo.getSelectedIndex();
-        int indexEstado = this.cmbEstado.getSelectedIndex();
-        Consultas consulta = new Consultas();
-        String estado;
-        if(this.txtDiagnostico.getText().length() > 0){
-            estado = "R";
+        if(this.cmbDoctoresDisp.getSelectedIndex() == 0 &&
+           this.cmbConsultaTipo.getSelectedIndex() == 0 &&
+           this.txtHoraCambio.getText().isEmpty() ){
+            
+            JOptionPane.showMessageDialog(null, "Los campos de doctor, consulta y hora están vacíos");
+        }else{
+            int indexDoc = this.cmbDoctoresDisp.getSelectedIndex();
+            int indexTipo = this.cmbConsultaTipo.getSelectedIndex();
+            int indexEstado = this.cmbEstado.getSelectedIndex();
+            Consultas consulta = new Consultas();
+            String estado;
+            if(this.txtDiagnostico.getText().length() > 0){
+                estado = "R";
+                consulta.setDiagnostico(this.txtDiagnostico.getText());
+            }else{
+                estado = "P";
+                consulta.setDiagnostico("Pendiente");
+            }
+            java.util.Date fechaN = this.dcFechaCamb.getDate();
+            Date fecha = new Date(fechaN.getTime());
+            String hora = this.txtHoraCambio.getText();
+            Double total = Double.valueOf(this.txtTotalCambio.getText().substring(2));
+            Empleados doctor = this.empList.get(indexDoc-1);
+            //Paciente paciente = this.pacientes.get(this.conv.getId_paciente());
+            TipoConsulta tipo = this.tipoLst.get(indexTipo-1);
             consulta.setDiagnostico(this.txtDiagnostico.getText());
-        }else{
-            estado = "P";
-            consulta.setDiagnostico("Pendiente");
-        }
-        java.util.Date fechaN = this.dcFechaCamb.getDate();
-        Date fecha = new Date(fechaN.getTime());
-        String hora = this.txtHoraCambio.getText();
-        Double total = Double.valueOf(this.txtTotalCambio.getText().substring(2));
-        Empleados doctor = this.empList.get(indexDoc-1);
-        //Paciente paciente = this.pacientes.get(this.conv.getId_paciente());
-        TipoConsulta tipo = this.tipoLst.get(indexTipo-1);
-        consulta.setDiagnostico(this.txtDiagnostico.getText());
-        consulta.setFecha(fecha);
-        consulta.setTotal(total);
-        consulta.setHora(Time.valueOf(hora));
-        consulta.setId_tipoConsul(tipo.getId_tipoConsul());
-        consulta.setId_emp(doctor.getId_emp());
-        consulta.setId_paciente(this.conv.getId_paciente());
-        consulta.setEstado(estado);
-        consulta.setId_consul(Integer.valueOf(this.txtIdConsulta.getText()));
-        if(!consulta.UpdateConsulta(consulta, conn)){
-            JOptionPane.showMessageDialog(null, "Algo salió mal ");
-        }else{
-            try {
-                this.conView = this.cv.getAllConsultas(conn);
-                this.LlenarTabla(this.conView);
-                this.VaciarCamposModificar();
-               
-                this.CambiaRecetas(consulta);
-                
-                this.setVisible(false);
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(pnlConsulta.class.getName()).log(Level.SEVERE, null, ex);
+            consulta.setFecha(fecha);
+            consulta.setTotal(total);
+            consulta.setHora(Time.valueOf(hora));
+            consulta.setId_tipoConsul(tipo.getId_tipoConsul());
+            consulta.setId_emp(doctor.getId_emp());
+            consulta.setId_paciente(this.conv.getId_paciente());
+            consulta.setEstado(estado);
+            consulta.setId_consul(Integer.valueOf(this.txtIdConsulta.getText()));
+            if(!consulta.UpdateConsulta(consulta, conn)){
+                JOptionPane.showMessageDialog(null, "Algo salió mal ");
+            }else{
+                try {
+                    this.conView = this.cv.getAllConsultas(conn);
+                    this.LlenarTabla(this.conView);
+                    this.VaciarCamposModificar();
+
+                    this.CambiaRecetas(consulta);
+
+                    this.setVisible(false);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(pnlConsulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
+        
     }//GEN-LAST:event_rSButton5ActionPerformed
     
    private void CambiaRecetas(Consultas cons){
@@ -795,6 +808,7 @@ public class pnlConsulta extends javax.swing.JPanel {
             this.txtHora.getText().isEmpty()){
             
             JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
+            
         }else{
             int indexDoc = this.cmbDoctores.getSelectedIndex();
             int indexPac = this.cmbPacientes.getSelectedIndex();
@@ -886,6 +900,10 @@ public class pnlConsulta extends javax.swing.JPanel {
         }
         this.LlenarCampo(this.conv);
     }//GEN-LAST:event_tblAllConsultasMouseClicked
+
+    private void cmbConsultaTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConsultaTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbConsultaTipoActionPerformed
     
     public void LlenarCampo(ConsultaVista conv){
         this.empList = empleado.GetAllEmpleadosEspe(conn, conv.getId_tipo_consulta());

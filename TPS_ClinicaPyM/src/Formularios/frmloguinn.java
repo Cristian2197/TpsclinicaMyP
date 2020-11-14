@@ -203,9 +203,16 @@ public class frmloguinn extends javax.swing.JFrame {
             Empleados empleadoVal = emp.validarEmpleado(this.con, emp);
             String error = empleadoVal.getErrorSql();
             if(!error.toLowerCase().equals("ok")){
-                String[] err = error.split(" ");
-                this.btnError.setText(err[1] + " " + err[2]);
+                if(error.contains("Usuario incorrecto")){
+                    this.btnError.setText("Usuario incorrecto");
+                }else if(error.contains("Clave")){
+                    this.btnError.setText("Contraseña incorrecta");
+                }else{
+                    this.btnError.setText("Algo salió mal");
+                }
+                //String[] err = error.split(" ");
                 this.btnError.setVisible(true);
+                
             }else{
                 try {
                     this.con.close();

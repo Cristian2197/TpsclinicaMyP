@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -528,15 +529,39 @@ public class pnlDoctores extends javax.swing.JPanel {
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
         if(this.txtIdEmpleado.getText().isEmpty()){
             try {
-                this.GuardarEmpleado();
+                if(this.txtApellidoEmpleado.getText().isEmpty() &&
+                   this.txtContraseña.getText().isEmpty() &&
+                   this.txtNombreEmpleado.getText().isEmpty() &&
+                   this.txtTelefono.getText().isEmpty() &&
+                   this.txtDui.getText().isEmpty() &&
+                   this.txtUsuario.getText().isEmpty() &&
+                   this.dcFecha.getDate() == null){
+                
+                    JOptionPane.showMessageDialog(null, "Faltan datos importantes");
+                }else{
+                    this.GuardarEmpleado();
+                }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(pnlDoctores.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
             try {
-                this.ActualizarEmpleado();
+                if(this.txtApellidoEmpleado.getText().isEmpty() &&
+                   this.txtContraseña.getText().isEmpty() &&
+                   this.txtNombreEmpleado.getText().isEmpty() &&
+                   this.txtTelefono.getText().isEmpty() &&
+                   this.txtDui.getText().isEmpty() &&
+                   this.txtUsuario.getText().isEmpty() &&
+                   this.dcFecha.getDate() == null){
+                    
+                    JOptionPane.showMessageDialog(null, "Faltan datos importantes, asegurese de llenar todos los campos");
+                    
+                }else{
+                    this.ActualizarEmpleado();
+                }
             } catch (SQLException ex) {
-                Logger.getLogger(pnlDoctores.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Algo salió mal: " + ex.getMessage());
             }
         }
     }//GEN-LAST:event_btnGuardar1ActionPerformed
