@@ -6,6 +6,7 @@ import Logica_Negocio.Empleados;
 import Logica_Negocio.EmpleadosVista;
 import Logica_Negocio.Paciente;
 import Logica_Negocio.TipoConsulta;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -36,7 +37,8 @@ public class pnlDoctores extends javax.swing.JPanel {
         this.conn = conn;
         this.emp = emp;
         this.btnEliminar1.setEnabled(false);
-        
+        this.lblErrorTelefono.setVisible(false);
+        this.lblErrorDUI.setVisible(false);
         this.LlenarTabla();
         this.LlenarComboTiposCamb();
     }
@@ -82,6 +84,8 @@ public class pnlDoctores extends javax.swing.JPanel {
         txtUsuario = new rojeru_san.RSMTextFull();
         txtNombre10 = new javax.swing.JLabel();
         btnEliminar1 = new rojeru_san.RSButton();
+        lblErrorTelefono = new javax.swing.JLabel();
+        lblErrorDUI = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         rSMTextFull3 = new rojeru_san.RSMTextFull();
         jLabel3 = new javax.swing.JLabel();
@@ -227,11 +231,37 @@ public class pnlDoctores extends javax.swing.JPanel {
         txtDui.setForeground(new java.awt.Color(51, 109, 136));
         txtDui.setBordeColorFocus(new java.awt.Color(51, 109, 136));
         txtDui.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtDui.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDuiFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDuiFocusLost(evt);
+            }
+        });
+        txtDui.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDuiKeyTyped(evt);
+            }
+        });
 
         txtTelefono.setForeground(new java.awt.Color(51, 109, 136));
         txtTelefono.setBordeColorFocus(new java.awt.Color(51, 109, 136));
         txtTelefono.setBotonColor(new java.awt.Color(51, 109, 136));
         txtTelefono.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusLost(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         txtNombre7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtNombre7.setText("Telefono:");
@@ -298,32 +328,43 @@ public class pnlDoctores extends javax.swing.JPanel {
             }
         });
 
+        lblErrorTelefono.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorTelefono.setText("<Errores>");
+
+        lblErrorDUI.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorDUI.setText("<Errores>");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(txtNombre6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNombre9)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtNombre2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre1))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txtNombre6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtNombre9)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtNombre2, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNombre1))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtIdEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblErrorTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -351,7 +392,8 @@ public class pnlDoctores extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblErrorDUI, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -375,7 +417,7 @@ public class pnlDoctores extends javax.swing.JPanel {
                     .addComponent(txtApellidoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,10 +433,14 @@ public class pnlDoctores extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDui, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblErrorDUI)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblErrorTelefono)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dcFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNombre6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -612,6 +658,93 @@ public class pnlDoctores extends javax.swing.JPanel {
         this.tblEmpleado.setRowSorter(trs);
     }//GEN-LAST:event_txtNombreFiltroKeyTyped
 
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        String c= String.valueOf(evt.getKeyChar());
+        if (!c.matches("\\d+")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
+        this.lblErrorTelefono.setText("Sin signos('-', ':', etc)");
+        this.lblErrorTelefono.setForeground(Color.BLUE);
+        this.lblErrorTelefono.setVisible(true);
+    }//GEN-LAST:event_txtTelefonoFocusGained
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+         String numero = this.txtTelefono.getText();
+        if(!numero.isEmpty()){
+            if(numero.length() < 8){
+                this.lblErrorTelefono.setVisible(true);
+                this.lblErrorTelefono.setText("El formato es incorrecto");
+                this.lblErrorTelefono.setForeground(Color.RED);
+                this.txtTelefono.setBordeColorFocus(Color.RED);
+            }else {
+                 String primera = numero.substring(0, 4);
+                String segunda = numero.substring(4, 8);
+                numero = primera + "-" + segunda;
+                this.txtTelefono.setText(primera + "-" + segunda);
+                if (!numero.matches("\\d{4}-\\d{4}?")){
+                    //evt.consume();
+                    System.out.println("Entro telefono paciente");
+                    this.lblErrorTelefono.setVisible(true);
+                    this.lblErrorTelefono.setText("El formato es incorrecto");
+                    this.lblErrorTelefono.setForeground(Color.RED);
+                    this.txtTelefono.setBordeColorFocus(Color.RED);
+                }else{
+                    this.lblErrorTelefono.setVisible(true);
+                    this.lblErrorTelefono.setText("Formato ingresado correctamente");
+                    this.lblErrorTelefono.setForeground(Color.BLUE);
+                    this.txtTelefono.setBordeColorFocus(Color.BLUE);
+                }
+            }
+           
+        }
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtDuiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDuiFocusGained
+        this.lblErrorDUI.setText("Sin signos('-', ':', etc)");
+        this.lblErrorDUI.setForeground(Color.BLUE);
+        this.lblErrorDUI.setVisible(true);
+    }//GEN-LAST:event_txtDuiFocusGained
+
+    private void txtDuiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDuiKeyTyped
+         String c= String.valueOf(evt.getKeyChar());
+        if (!c.matches("\\d+")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDuiKeyTyped
+
+    private void txtDuiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDuiFocusLost
+        String numero = this.txtDui.getText();
+        if(!numero.isEmpty()){
+            if(numero.length() < 9){
+                this.lblErrorDUI.setVisible(true);
+                this.lblErrorDUI.setText("El formato es incorrecto");
+                this.lblErrorDUI.setForeground(Color.RED);
+                this.txtDui.setBordeColorFocus(Color.RED);
+            }else {
+                 String primera = numero.substring(0, 8);
+                String segunda = numero.substring(8, 9);
+                numero = primera + "-" + segunda;
+                this.txtDui.setText(primera + "-" + segunda);
+                if (!numero.matches("\\d{8}-\\d{1}?")){
+                    //evt.consume();
+                    this.lblErrorDUI.setVisible(true);
+                    this.lblErrorDUI.setText("El formato es incorrecto");
+                    this.lblErrorDUI.setForeground(Color.RED);
+                    this.txtDui.setBordeColorFocus(Color.RED);
+                }else{
+                    this.lblErrorDUI.setVisible(true);
+                    this.lblErrorDUI.setText("Formato ingresado correctamente");
+                    this.lblErrorDUI.setForeground(Color.BLUE);
+                    this.txtDui.setBordeColorFocus(Color.BLUE);
+                }
+            }
+           
+        }
+    }//GEN-LAST:event_txtDuiFocusLost
+
     public void GuardarEmpleado() throws SQLException{
         java.util.Date fechaN = this.dcFecha.getDate();
         Date fecha = new Date(fechaN.getTime());
@@ -770,6 +903,8 @@ public class pnlDoctores extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblErrorDUI;
+    private javax.swing.JLabel lblErrorTelefono;
     private rojeru_san.RSMTextFull rSMTextFull3;
     private rojeru_san.RSMTextFull rSMTextFull6;
     private rojeru_san.complementos.RSTableMetro tblEmpleado;

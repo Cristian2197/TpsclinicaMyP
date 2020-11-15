@@ -230,8 +230,12 @@
                                       <Component id="rSComboMetro3" min="-2" pref="0" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="548" max="-2" attributes="0"/>
+                                  <Component id="lblErrorHora" min="-2" pref="340" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="83" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -261,7 +265,9 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace pref="24" max="32767" attributes="0"/>
                                           <Component id="rSComboMetro3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="lblErrorHora" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -376,6 +382,7 @@
                     <Property name="placeholder" type="java.lang.String" value="Formato 24h"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtHoraFocusLost"/>
                     <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtHoraKeyTyped"/>
                   </Events>
                 </Component>
@@ -534,6 +541,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTotal">
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblErrorHora">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&lt;Errores&gt;"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

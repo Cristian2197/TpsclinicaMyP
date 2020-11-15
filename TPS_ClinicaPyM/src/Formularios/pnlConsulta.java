@@ -44,12 +44,14 @@ public class pnlConsulta extends javax.swing.JPanel {
     ArrayList<Consultas> consLst = new ArrayList<>();
     ArrayList<ConsultaVista> conView = new ArrayList<>();
     JPanel pnlPrincipal;
+    
     public pnlConsulta(Connection con, Empleados emp, JPanel pnel) throws SQLException {
         initComponents();
         this.conn = con;
         this.empleado = emp;
         this.pnlPrincipal = pnel;
         this.InicializarCampos();
+        this.lblErrorHora.setVisible(false);
     }
 
     private void LlenarComboPaciente(ArrayList<Paciente> Datos){
@@ -169,6 +171,7 @@ public class pnlConsulta extends javax.swing.JPanel {
         cmbPacientes = new rojerusan.RSComboMetro();
         jLabel24 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
+        lblErrorHora = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txtNombreFiltro = new rojeru_san.RSMTextFull();
         jLabel2 = new javax.swing.JLabel();
@@ -273,6 +276,11 @@ public class pnlConsulta extends javax.swing.JPanel {
         txtHora.setForeground(new java.awt.Color(51, 109, 136));
         txtHora.setBordeColorFocus(new java.awt.Color(51, 109, 136));
         txtHora.setPlaceholder("Formato 24h");
+        txtHora.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHoraFocusLost(evt);
+            }
+        });
         txtHora.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtHoraKeyTyped(evt);
@@ -342,6 +350,9 @@ public class pnlConsulta extends javax.swing.JPanel {
         jLabel24.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel24.setText("sin medicina");
 
+        lblErrorHora.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorHora.setText("<Errores>");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -394,8 +405,11 @@ public class pnlConsulta extends javax.swing.JPanel {
                                 .addComponent(cmbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(rSComboMetro3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 92, Short.MAX_VALUE))
+                            .addComponent(rSComboMetro3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(548, 548, 548)
+                        .addComponent(lblErrorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 83, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +434,9 @@ public class pnlConsulta extends javax.swing.JPanel {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                                 .addComponent(rSComboMetro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70))
+                                .addGap(30, 30, 30)
+                                .addComponent(lblErrorHora)
+                                .addGap(26, 26, 26))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(dcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -803,11 +819,12 @@ public class pnlConsulta extends javax.swing.JPanel {
 
     private void rSButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButton3ActionPerformed
         if(this.cmbPacientes.getSelectedIndex() == 0 &&
+            this.lblErrorHora.getForeground() == Color.RED &&
             this.cmbDoctores.getSelectedIndex() == 0 &&
             this.cmbTipoConsulta.getSelectedIndex() == 0 &&
             this.txtHora.getText().isEmpty()){
             
-            JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos");
+            JOptionPane.showMessageDialog(null, "Asegurese de llenar todos los campos y que los formatos sean correctos");
             
         }else{
             int indexDoc = this.cmbDoctores.getSelectedIndex();
@@ -850,18 +867,22 @@ public class pnlConsulta extends javax.swing.JPanel {
 
     private void txtHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoraKeyTyped
         String c= String.valueOf(evt.getKeyChar());
-
-        if (!c.matches("\\d+(\\.\\d{1,2})?")){
-
-            evt.consume();
-        }else{
-            if(this.txtHora.getText().length() == 2){
-                this.txtHora.setText(this.txtHora.getText() + ":");
-            }
-            if(this.txtHora.getText().length() == 5){
-                evt.consume();
+        
+        if(this.txtHora.getText().length() == 2){
+            this.txtHora.setText(this.txtHora.getText() + ":");
+        }
+        if(this.txtHora.getText().length() >= 2){
+            
+            if(!this.txtHora.getText().contains(":")){
+                this.lblErrorHora.setVisible(true);
+                this.lblErrorHora.setText("Formato incorrecto");
+                this.lblErrorHora.setForeground(Color.RED);
             }
         }
+        if(this.txtHora.getText().length() == 5){
+            evt.consume();
+        }
+
     }//GEN-LAST:event_txtHoraKeyTyped
     TableRowSorter trs;
     private void txtNombreFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreFiltroKeyTyped
@@ -904,6 +925,18 @@ public class pnlConsulta extends javax.swing.JPanel {
     private void cmbConsultaTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConsultaTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbConsultaTipoActionPerformed
+
+    private void txtHoraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraFocusLost
+        if(!this.txtHora.getText().matches("\\d{2}:\\d{2}?")){
+            this.lblErrorHora.setText("Formato incorrecto: ##:##");
+            this.lblErrorHora.setForeground(Color.RED);
+            this.lblErrorHora.setVisible(true);
+        }else{
+            this.lblErrorHora.setText("Formato correcto");
+            this.lblErrorHora.setForeground(Color.BLUE);
+            this.lblErrorHora.setVisible(true);
+        }
+    }//GEN-LAST:event_txtHoraFocusLost
     
     public void LlenarCampo(ConsultaVista conv){
         this.empList = empleado.GetAllEmpleadosEspe(conn, conv.getId_tipo_consulta());
@@ -989,6 +1022,7 @@ public class pnlConsulta extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblErrorHora;
     private rojeru_san.RSButton rSButton3;
     private rojeru_san.RSButton rSButton4;
     private rojeru_san.RSButton rSButton5;

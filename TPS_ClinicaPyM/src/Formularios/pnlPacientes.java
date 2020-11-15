@@ -3,6 +3,7 @@ package Formularios;
 
 import Logica_Negocio.Empleados;
 import Logica_Negocio.Paciente;
+import java.awt.Color;
 import java.awt.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.RowSorter;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -32,6 +34,9 @@ public class pnlPacientes extends javax.swing.JPanel {
     
     public pnlPacientes(Connection con, Empleados empleado) {
         initComponents();
+        this.lblErrorDUI1.setVisible(false);
+        this.lblErrorTelefonoEcargado.setVisible(false);
+        this.lblErrorTelefonoPaciente.setVisible(false);
         this.conn = con;
         this.emp = empleado;
         this.LlenarTabla();
@@ -137,6 +142,9 @@ public class pnlPacientes extends javax.swing.JPanel {
         lblPuesto7 = new javax.swing.JLabel();
         txtEncargado = new rojeru_san.RSMTextFull();
         txtIdPaciente = new javax.swing.JTextField();
+        lblErrorTelefonoPaciente = new javax.swing.JLabel();
+        lblErrorDUI1 = new javax.swing.JLabel();
+        lblErrorTelefonoEcargado = new javax.swing.JLabel();
 
         txtNombre3.setText("Nombre: ");
 
@@ -198,7 +206,7 @@ public class pnlPacientes extends javax.swing.JPanel {
         lblPuesto4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblPuesto4.setForeground(new java.awt.Color(29, 27, 56));
         lblPuesto4.setText("Estado Civil");
-        jPanel3.add(lblPuesto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        jPanel3.add(lblPuesto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
 
         lblPuesto5.setBackground(new java.awt.Color(231, 156, 194));
         lblPuesto5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -210,7 +218,7 @@ public class pnlPacientes extends javax.swing.JPanel {
         lblPuesto6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblPuesto6.setForeground(new java.awt.Color(29, 27, 56));
         lblPuesto6.setText("Teléfono encargado");
-        jPanel3.add(lblPuesto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, 20));
+        jPanel3.add(lblPuesto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, -1, 20));
 
         lblPuesto8.setBackground(new java.awt.Color(231, 156, 194));
         lblPuesto8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -222,7 +230,7 @@ public class pnlPacientes extends javax.swing.JPanel {
         lblFecha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(29, 27, 56));
         lblFecha.setText("Fecha Nacimiento");
-        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
+        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
 
         txtApellido.setForeground(new java.awt.Color(29, 27, 56));
         txtApellido.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -242,6 +250,19 @@ public class pnlPacientes extends javax.swing.JPanel {
         txtDUI.setForeground(new java.awt.Color(29, 27, 56));
         txtDUI.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtDUI.setPlaceholder("DUI del paciente");
+        txtDUI.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDUIFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDUIFocusLost(evt);
+            }
+        });
+        txtDUI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDUIKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtDUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 340, -1));
 
         cmbSexo.setBackground(new java.awt.Color(51, 109, 136));
@@ -260,18 +281,44 @@ public class pnlPacientes extends javax.swing.JPanel {
         cmbEstadoCivil.setColorFondo(new java.awt.Color(51, 109, 136));
         cmbEstadoCivil.setColorSeleccion(new java.awt.Color(51, 109, 136));
         cmbEstadoCivil.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jPanel3.add(cmbEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 340, 40));
+        jPanel3.add(cmbEstadoCivil, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 340, 40));
 
         txtTelefono.setForeground(new java.awt.Color(29, 27, 56));
         txtTelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtTelefono.setPlaceholder("Teléfono del paciente");
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusLost(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
         jPanel3.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 340, -1));
 
         txtTelefonoEncargado.setForeground(new java.awt.Color(29, 27, 56));
         txtTelefonoEncargado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtTelefonoEncargado.setPlaceholder("Teléfono del encargado");
-        jPanel3.add(txtTelefonoEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 340, -1));
-        jPanel3.add(dcFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 540, 340, 50));
+        txtTelefonoEncargado.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTelefonoEncargadoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoEncargadoFocusLost(evt);
+            }
+        });
+        txtTelefonoEncargado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoEncargadoKeyTyped(evt);
+            }
+        });
+        jPanel3.add(txtTelefonoEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 340, -1));
+        jPanel3.add(dcFechaNac, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 550, 340, 50));
 
         btnGuardar.setBackground(new java.awt.Color(51, 109, 136));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/Guardar.png"))); // NOI18N
@@ -343,16 +390,28 @@ public class pnlPacientes extends javax.swing.JPanel {
         lblPuesto7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblPuesto7.setForeground(new java.awt.Color(29, 27, 56));
         lblPuesto7.setText("Encargado");
-        jPanel3.add(lblPuesto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, -1, -1));
+        jPanel3.add(lblPuesto7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, -1, -1));
 
         txtEncargado.setForeground(new java.awt.Color(29, 27, 56));
         txtEncargado.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtEncargado.setPlaceholder("Nombre del encargado");
-        jPanel3.add(txtEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 340, -1));
+        jPanel3.add(txtEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 340, -1));
 
         txtIdPaciente.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtIdPaciente.setEnabled(false);
         jPanel3.add(txtIdPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 70));
+
+        lblErrorTelefonoPaciente.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorTelefonoPaciente.setText("<Errores>");
+        jPanel3.add(lblErrorTelefonoPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 340, -1));
+
+        lblErrorDUI1.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorDUI1.setText("<Errores>");
+        jPanel3.add(lblErrorDUI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, 340, -1));
+
+        lblErrorTelefonoEcargado.setForeground(new java.awt.Color(255, 0, 0));
+        lblErrorTelefonoEcargado.setText("<Errores>");
+        jPanel3.add(lblErrorTelefonoEcargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 530, 340, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -383,7 +442,6 @@ public class pnlPacientes extends javax.swing.JPanel {
         if(this.txtIdPaciente.getText().isEmpty()){
             if(this.txtNombre.getText().isEmpty() &&
                this.txtApellido.getText().isEmpty() &&
-               this.txtDUI.getText().isEmpty() &&
                this.txtDireccion.getText().isEmpty() &&
                this.txtTelefono.getText().isEmpty() &&
                this.dcFechaNac.getDate() == null){
@@ -440,6 +498,142 @@ public class pnlPacientes extends javax.swing.JPanel {
         trs = new TableRowSorter(this.model);
         this.tblPacientes.setRowSorter(trs);
     }//GEN-LAST:event_txtNombreFiltroKeyTyped
+    
+    String text = "";
+    int conta = 0;
+    private void txtDUIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDUIKeyTyped
+        String c= String.valueOf(evt.getKeyChar());
+        if (!c.matches("\\d+")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDUIKeyTyped
+
+    private void txtDUIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDUIFocusLost
+        String numero = this.txtDUI.getText();
+        if(!numero.isEmpty()){
+            if(numero.length() < 9){
+                this.lblErrorDUI1.setVisible(true);
+                this.lblErrorDUI1.setText("El formato es incorrecto");
+                this.lblErrorDUI1.setForeground(Color.RED);
+                this.txtDUI.setBordeColorFocus(Color.RED);
+            }else {
+                 String primera = numero.substring(0, 8);
+                String segunda = numero.substring(8, 9);
+                numero = primera + "-" + segunda;
+                this.txtDUI.setText(primera + "-" + segunda);
+                if (!numero.matches("\\d{8}-\\d{1}?")){
+                    //evt.consume();
+                    this.lblErrorDUI1.setVisible(true);
+                    this.lblErrorDUI1.setText("El formato es incorrecto");
+                    this.lblErrorDUI1.setForeground(Color.RED);
+                    this.txtDUI.setBordeColorFocus(Color.RED);
+                }else{
+                    this.lblErrorDUI1.setVisible(true);
+                    this.lblErrorDUI1.setText("Formato ingresado correctamente");
+                    this.lblErrorDUI1.setForeground(Color.BLUE);
+                    this.txtDUI.setBordeColorFocus(Color.BLUE);
+                }
+            }
+           
+        }
+    }//GEN-LAST:event_txtDUIFocusLost
+    
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        String c= String.valueOf(evt.getKeyChar());
+        if (!c.matches("\\d+")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+        String numero = this.txtTelefono.getText();
+        if(!numero.isEmpty()){
+            if(numero.length() < 8){
+                this.lblErrorTelefonoPaciente.setVisible(true);
+                this.lblErrorTelefonoPaciente.setText("El formato es incorrecto");
+                this.lblErrorTelefonoPaciente.setForeground(Color.RED);
+                this.txtTelefono.setBordeColorFocus(Color.RED);
+            }else {
+                 String primera = numero.substring(0, 4);
+                String segunda = numero.substring(4, 8);
+                numero = primera + "-" + segunda;
+                this.txtTelefono.setText(primera + "-" + segunda);
+                if (!numero.matches("\\d{4}-\\d{4}?")){
+                    //evt.consume();
+                    System.out.println("Entro telefono paciente");
+                    this.lblErrorTelefonoPaciente.setVisible(true);
+                    this.lblErrorTelefonoPaciente.setText("El formato es incorrecto");
+                    this.lblErrorTelefonoPaciente.setForeground(Color.RED);
+                    this.txtTelefono.setBordeColorFocus(Color.RED);
+                }else{
+                    this.lblErrorTelefonoPaciente.setVisible(true);
+                    this.lblErrorTelefonoPaciente.setText("Formato ingresado correctamente");
+                    this.lblErrorTelefonoPaciente.setForeground(Color.BLUE);
+                    this.txtTelefono.setBordeColorFocus(Color.BLUE);
+                }
+            }
+           
+        }
+        
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtTelefonoEncargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEncargadoKeyTyped
+        String c= String.valueOf(evt.getKeyChar());
+        if (!c.matches("\\d+")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoEncargadoKeyTyped
+
+    private void txtTelefonoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusGained
+        this.lblErrorTelefonoPaciente.setText("Sin signos('-', ':', etc)");
+        this.lblErrorTelefonoPaciente.setForeground(Color.BLUE);
+        this.lblErrorTelefonoPaciente.setVisible(true);
+    }//GEN-LAST:event_txtTelefonoFocusGained
+
+    private void txtTelefonoEncargadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEncargadoFocusLost
+         String numero = this.txtTelefonoEncargado.getText();
+        if(!numero.isEmpty()){
+            if(numero.length() < 8){
+                this.lblErrorTelefonoEcargado.setVisible(true);
+                this.lblErrorTelefonoEcargado.setText("El formato es incorrecto");
+                this.lblErrorTelefonoEcargado.setForeground(Color.RED);
+                this.txtTelefonoEncargado.setBordeColorFocus(Color.RED);
+            }else {
+                String primera = numero.substring(0, 4);
+                String segunda = numero.substring(4, 8);
+                numero = primera + "-" + segunda;
+                this.txtTelefonoEncargado.setText(primera + "-" + segunda);
+                if (!numero.matches("\\d{4}-\\d{4}?")){
+                    //evt.consume();
+                    System.out.println("Entro telefono paciente");
+                    this.lblErrorTelefonoEcargado.setVisible(true);
+                    this.lblErrorTelefonoEcargado.setText("El formato es incorrecto");
+                    this.lblErrorTelefonoEcargado.setForeground(Color.RED);
+                    this.txtTelefonoEncargado.setBordeColorFocus(Color.RED);
+                }else{
+                    this.lblErrorTelefonoEcargado.setVisible(true);
+                    this.lblErrorTelefonoEcargado.setText("Formato ingresado correctamente");
+                    this.lblErrorTelefonoEcargado.setForeground(Color.BLUE);
+                    this.txtTelefonoEncargado.setBordeColorFocus(Color.BLUE);
+                }
+            }
+           
+        }
+        
+        
+    }//GEN-LAST:event_txtTelefonoEncargadoFocusLost
+
+    private void txtTelefonoEncargadoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoEncargadoFocusGained
+        this.lblErrorTelefonoEcargado.setText("Sin signos('-', ':', etc)");
+        this.lblErrorTelefonoEcargado.setForeground(Color.BLUE);
+        this.lblErrorTelefonoEcargado.setVisible(true);
+    }//GEN-LAST:event_txtTelefonoEncargadoFocusGained
+
+    private void txtDUIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDUIFocusGained
+        this.lblErrorDUI1.setText("Sin signos('-', ':', etc)");
+        this.lblErrorDUI1.setForeground(Color.BLUE);
+        this.lblErrorDUI1.setVisible(true);
+    }//GEN-LAST:event_txtDUIFocusGained
     
     public void LlenarCampos(Paciente paci){
         this.txtNombre.setText(paci.getNombre());
@@ -564,6 +758,9 @@ public class pnlPacientes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblErrorDUI1;
+    private javax.swing.JLabel lblErrorTelefonoEcargado;
+    private javax.swing.JLabel lblErrorTelefonoPaciente;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblPuesto;
     private javax.swing.JLabel lblPuesto1;
